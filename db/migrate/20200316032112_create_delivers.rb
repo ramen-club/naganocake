@@ -5,7 +5,7 @@ class CreateDelivers < ActiveRecord::Migration[5.2]
       t.integer "customer_id"
       t.string  "name"
       t.string  "postal_code"
-      t.string  "street_addres"
+      t.string  "street_address"
 
       t.timestamps
     end

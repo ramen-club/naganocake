@@ -4,11 +4,11 @@ class CreateOrders < ActiveRecord::Migration[5.2]
 
       t.integer "customer_id"
       t.integer "payment_method"
-      t.integer "payment"
       t.integer "postage"
+      t.integer "charge"
       t.string  "name"
       t.string  "postal_code"
-      t.string  "street_addres"
+      t.string  "street_address"
       t.integer "order_status"
 
       t.timestamps
