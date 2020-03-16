@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
 
   namespace :admin do
-    resources :orders, only: [:製作ステータスを変えるアクション名]
+    resources :orders, only: [:update]
   end
 
   get '/items/top', to: 'items#top'
