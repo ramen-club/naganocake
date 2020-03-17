@@ -17,12 +17,14 @@ class CartsController < ApplicationController
     end
 
     def destroy
-        current_user.cart(params[:item_id])
+        @cart = current_user.cart(params[:item_id])
+        @cart.destroy
         redirect_back(fallback_location: root_path)
     end
 
     def destroy_all
-        current_user>cart(params[:user_id])
+        @cart = current_user.cart(params[:user_id])
+        @cart.destroy
         redirect_to 'パスが分かり次第item詳細画面に遷移'
     end
 
