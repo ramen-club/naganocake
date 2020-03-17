@@ -2,7 +2,11 @@ class CartsController < ApplicationController
 
     def show
         user = User.find(params[:user_id])
-        @cart = User.cart_item
+        @carts = User.cart
+        @carts = 
+        @price = 
+          cart.count * @carts
+          
     end
 
     def create
