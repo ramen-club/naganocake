@@ -19,14 +19,14 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if customer_signed_in? %>
-              <li><%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-default' %></li>
-              <li><%= link_to '商品一覧', class: 'btn btn-default' %></li>
-              <li><%= link_to 'カート', class: 'btn btn-default' %></li>
-              <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'btn btn-default' %></li>
+              <li><%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-default test' %></li>
+              <li><%= link_to '商品一覧', class: 'btn btn-default test' %></li>
+              <li><%= link_to 'カート', class: 'btn btn-default test' %></li>
+              <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'btn btn-default test' %></li>
             <% else %>
-              <li><%= link_to '商品一覧', class: 'btn btn-default' %></li>
-              <li><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-default' %></li>
-              <li><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-default' %></li>
+              <li><%= link_to '商品一覧', class: 'btn btn-default test' %></li>
+              <li><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-default test' %></li>
+              <li><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-default test' %></li>
             <% end %>
           </ul>
         </nav>
