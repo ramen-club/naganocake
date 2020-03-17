@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
 
   resources :customers, only: [:show, :edit, :update]
+  get '/customers/withdraw' => 'customers#withdraw'
 
   namespace :admin do
     resources :orders, only: [:update]
