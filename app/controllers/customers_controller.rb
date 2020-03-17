@@ -12,6 +12,11 @@ class CustomersController < ApplicationController
 
   def update
   	@customer = Customer.find(params[:id])
+  	@customer.update(customer_params)
+  	redirect_to customer_path(@customer.id)
+  end
+
+  def withdraw
   end
 
   private

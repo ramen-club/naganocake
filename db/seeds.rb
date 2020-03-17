@@ -9,4 +9,4 @@
 Customer.create!(email: "admin@example.jp",
              password:  "ramenclub",
              password_confirmation: "ramenclub",
-             admin: true)
+             admin_flg: true)
