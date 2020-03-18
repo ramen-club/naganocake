@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @item = Item.all
+    @genre = Genre.all
   end
 
   def show
