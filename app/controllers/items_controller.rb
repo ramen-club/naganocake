@@ -8,9 +8,12 @@ class ItemsController < ApplicationController
 
   def index
     @carts = Carts.all
+    @item = Item.all
+    @genre = Genre.all
   end
 
   def show
+    @item = item.find(params[:id])
   end
 
 end
