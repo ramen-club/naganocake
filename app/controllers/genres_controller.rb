@@ -23,6 +23,7 @@ class GenresController < ApplicationController
 private
   def genr_params
     params_require(:genr).permit(:name, :is_active)
+  end
 
 
   
