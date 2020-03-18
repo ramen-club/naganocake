@@ -1,0 +1,42 @@
+<%= form_for(@item) do |f| %>
+<% if @item.errors.any? %>
+    <h3>
+    <% @item.errors.count %>errors prohibited this book from being saved:
+    </h3>
+
+    <ul>
+    <% @item.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    </ul>
+    <% end %>
+    <div class="form-group has-icon">
+        <div class="field">
+        <%= attachment_image_tag @user, :image_id, :fill, 60, 60, fallback: "no_image.jpg" %>
+        <%= f.attachment_field :profile_image %>
+        </div>
+        <div class="field">
+        商品名
+        <%= f.text_field :name, autofocus: true %>
+        </div>
+        <div class="field">
+        商品説明
+        <%= f.text_area :description %>
+        </div>
+        <div class="field">
+        ジャンル
+         <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "---選択してください---" %>
+         <%# ↑有効なジャンルだけを表示するように設定したい。 %>
+        </div>
+        <div class="field">
+        税抜価格
+        <%= f.text_field :price, autofocus: true %>円
+        </div>
+        <div class="field">
+        販売ステータス
+         <%= f.collection_select :sell_status, Item.all, :id, :sell_satatus, :prompt => "---選択してください---" %>
+         </div>
+    </div>
+    <%= f.submit "新規登録" %>
+
+    <% end %>

@@ -7,9 +7,12 @@ class ItemsController < ApplicationController
   end
 
   def index
+    @item = Item.all
+    @genre = Genre.all
   end
 
   def show
+    @item = item.find(params[:id])
   end
 
 end
