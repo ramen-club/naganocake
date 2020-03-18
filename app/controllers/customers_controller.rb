@@ -2,6 +2,7 @@ class CustomersController < ApplicationController
 
   before_action :screen_customer, only: [:show, :edit, :update]
 
+
   def show
   	@customer = Customer.find(params[:id])
   end
@@ -17,6 +18,7 @@ class CustomersController < ApplicationController
   end
 
   def withdraw
+    @customer = Customer.find(current_customer.id)
   end
 
   private

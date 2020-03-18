@@ -1,5 +1,16 @@
 class ApplicationController < ActionController::Base
 
+  # ログイン後に遷移するページを顧客と管理者で分ける
+  def after_sign_in_path_for(resource)
+  	case resource
+  	when Admin
+  	  admins_top_path
+  	when Customer
+  	  root_path
+  	end
+  end
+
+  # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
   before_action :configure_permitted_parameters, if: :devise_controller?
   protected
   def configure_permitted_parameters
