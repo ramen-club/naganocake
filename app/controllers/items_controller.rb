@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
   end
 
   def index
+    @carts = Carts.all
   end
 
   def show

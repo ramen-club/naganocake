@@ -1,35 +1,47 @@
 class CartsController < ApplicationController
-
+    before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
     def show
-        user = User.find(params[:user_id])
-        @carts = User.cart
-        @carts = 
-        @price = 
-          cart.count * @carts
-          
+        @cart = Item.find(session[:cart])
+        # @cart_items = Current_cart.cart_items(params[:customers_id])
     end
 
+    def add_item
+    if @cart_item.blank?
+      @cart_item = current_cart.cart_items.build(items_id: params[:items_id])
+    end
+
+    @cart_item.quantity += params[:quantity].to_i
+    @cart_item.save
+    redirect_to current_cart
+  end
+
     def create
-        current_user.cart(params[:item_id])
+        current_customers.cart(params[:item_id])
         redirect_to action: :sow
     end
 
     def update_item
-        @cart = Cart.find(params[:id])
-        @cart.update(cart_params)
-        redirect_back(fallback_location: root_path)
+        # @cart_item = Cart.find(params[:id])
+        # @cart.update(cart_params)
+        # redirect_back(fallback_location: root_path)
+        @cart_item.update(quantity: params[:quantity].to_i)
+        redirect_to current_cart
     end
-
+        # 商品消去
+    def delete_item　
+    @cart_item.destroy
+    redirect_to current_cart
+    end
+        # カート内消去
     def destroy
-        @cart = current_user.cart(params[:item_id])
-        @cart.destroy
-        redirect_back(fallback_location: root_path)
+    @cart = current_cart
+    @cart.destroy
+    session[:cart_id] = nil
     end
 
-    def destroy_all
-        @cart = current_user.cart(params[:user_id])
-        @cart.destroy
-        redirect_to 'パスが分かり次第item詳細画面に遷移'
-    end
+    private
 
+    def setup_cart_item!
+    @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+  end
 end
