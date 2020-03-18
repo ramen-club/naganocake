@@ -5,22 +5,23 @@ class Admin::GenresController < ApplicationController
   end
 
   def index
-    genres = Genres.all
+    @genres = Genre.all
+    @genre = Genre.new
   end
 
   def create
-    @genre = Genre.new(genre_params)
+    @genre = Genres.new(genre_params)
     @genre.admin_id = current_user.id
     @genre.save
     redirect_back(fallback_location: root_path)
   end
 
   def edit
-    @genre = Genre.find(params[:id])
+    @genre = Genres.find(params[:id])
   end
 
   def update
-    @genre = Genre.find(params[:id])
+    @genre = Genres.find(params[:id])
     @genre.update
     redirect_to admin_genre_path
   end
