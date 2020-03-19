@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:update]
     resources :genres
   end
+
+  # 注文テーブル
+  resources :orders
   
   resources :carts, only: [:show] 
    post '/add_item' => 'carts#add_item'
