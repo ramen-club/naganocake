@@ -2,6 +2,12 @@ class Admin::OrdersController < ApplicationController
 
     before_action :if_not_admin
 
+  def index
+    @orders = Customer.order.all
+  end
+
+  def show
+  end
 
     private
   def if_not_admin
