@@ -7,6 +7,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
+    @order = Customer.order.find(params[:id])
   end
 
     private
