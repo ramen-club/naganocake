@@ -7,7 +7,7 @@ class Admin::GenresController < ApplicationController
   def index
     @genres = Genre.all
     @genre = Genre.new
-    # if @genres.is_active == true
+    # if @genres.is_active == true 'ステータス名の変更が分かりませんでした。'
     #    "有効"
     # else
     #   "無効"
