@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # 商品テーブル
   root to: 'items#top'
   resources :items, only: [:index, :show]
-  resources :carts, only: [:show]
+  resources :carts, only: [:index,:destroy]
   post '/add_item' => 'carts#add_item'
   post '/update_item' => 'carts#update_item'
   delete '/delete_item' => 'carts#delete_item'
@@ -28,11 +28,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:update]
     resources :genres
   end
-  
-  resources :carts, only: [:show] 
-   post '/add_item' => 'carts#add_item'
-   post '/update_item' => 'carts#update_item'
-   delete '/delete_item' => 'carts#delete_item'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

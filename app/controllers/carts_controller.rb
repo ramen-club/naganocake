@@ -1,8 +1,6 @@
 class CartsController < ApplicationController
     before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
     def show
-        @cart = Item.find(session[:cart])
-        # @cart_items = Current_cart.cart_items(params[:customers_id])
     end
 
     def add_item
@@ -14,6 +12,15 @@ class CartsController < ApplicationController
     @cart_item.save
     redirect_to current_cart
   end
+
+    def index 
+       # @cart = current_customer.carts.last
+       @items = Item.all
+       @item = Item.new
+
+       # @crat_detail = Crat.find(params[:id])
+       # @cart_item_detail = Cart_item.find(params[:id])
+    end
 
     def create
         current_customers.cart(params[:item_id])
@@ -29,14 +36,17 @@ class CartsController < ApplicationController
     end
         # 商品消去
     def delete_item　
-    @cart_item.destroy
-    redirect_to current_cart
+        @cart_item = current_cart_item(params[:id])
+        @cart_item.destroy
+        redirect_to current_cart
     end
         # カート内消去
     def destroy
-    @cart = current_cart
-    @cart.destroy
-    session[:cart_id] = nil
+        @cart = current_cart
+        cart = Crat.find(params[:id])
+        @cart.destroy
+        session[:cart_id] = nil
+        redirect_to current_cart
     end
 
     private
