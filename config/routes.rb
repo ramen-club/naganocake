@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :delivers
 
   namespace :admin do
-    resources :orders, only: [:update]
+    resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
     resources :genres
   end
 
