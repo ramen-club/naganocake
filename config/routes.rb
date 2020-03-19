@@ -24,12 +24,13 @@ Rails.application.routes.draw do
   # 配送先テーブル
   resources :delivers
 
-  namespace :admin do
+  namespace :admins do
     resources :orders, only: [:update]
     resources :genres
+    resources :items
   end
-  
-  resources :carts, only: [:show] 
+
+  resources :carts, only: [:show]
    post '/add_item' => 'carts#add_item'
    post '/update_item' => 'carts#update_item'
    delete '/delete_item' => 'carts#delete_item'

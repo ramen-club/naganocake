@@ -1,4 +1,4 @@
-class Admin::GenresController < ApplicationController
+class Admins::GenresController < ApplicationController
   def new
     @genre = Genre.new
 

@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admins::OrdersController < ApplicationController
 
     before_action :if_not_admin
 

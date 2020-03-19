@@ -1,4 +1,4 @@
-<%= form_for(@item) do |f| %>
+<%= form_with(model: [:admins, @item]) do |f| %>
 <% if @item.errors.any? %>
     <h3>
     <% @item.errors.count %>errors prohibited this book from being saved:
@@ -12,8 +12,8 @@
     <% end %>
     <div class="form-group has-icon">
         <div class="field">
-        <%= attachment_image_tag @user, :image_id, :fill, 60, 60, fallback: "no_image.jpg" %>
-        <%= f.attachment_field :profile_image %>
+
+        <%= f.attachment_field :image %>
         </div>
         <div class="field">
         商品名
@@ -25,7 +25,9 @@
         </div>
         <div class="field">
         ジャンル
-         <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "---選択してください---" %>
+        <%= fields_for(@genre) do |genre| %>
+        <%= f.collection_select :name, Genre.all, :id, :name, :prompt => "---選択してください---" %>
+        <% end %>
          <%# ↑有効なジャンルだけを表示するように設定したい。 %>
         </div>
         <div class="field">
@@ -34,7 +36,7 @@
         </div>
         <div class="field">
         販売ステータス
-         <%= f.collection_select :sell_status, Item.all, :id, :sell_satatus, :prompt => "---選択してください---" %>
+         <%= f.collection_select :sale_status, Item.all, :id, :sale_satatus, :prompt => "---選択してください---" %>
          </div>
     </div>
     <%= f.submit "新規登録" %>

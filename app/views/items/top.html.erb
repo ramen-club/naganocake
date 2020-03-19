@@ -9,7 +9,7 @@
         <ul>
          <% @genre.each do |genre| %>
          <li>
-         <% link_to "#{genre.name}" items_path(genre.id) %>
+         <% link_to "#{genre.name}" items_path %>
          </li>
          <% end %>
         </ul>
