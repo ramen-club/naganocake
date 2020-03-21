@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :delivers
 
   namespace :admin do
+    #admin側のorderテーブル
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
     resources :genres
   end
