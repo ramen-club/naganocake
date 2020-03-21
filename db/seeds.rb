@@ -16,6 +16,8 @@ Admin.create!(email: "admin@example.jp",
 
 # 顧客のテストデータ
 Customer.create!(
+  [
+  {
 	email: "hoge@example.com",
 	family_name: "山田",
 	first_name: "花子",
@@ -24,4 +26,18 @@ Customer.create!(
 	postal_code: "1500041",
 	street_address: "東京都渋谷区神南1丁目19-11",
 	tel_number: "0368694700",
-	password: "123456")
+	password: "123456"
+  },
+  {
+  	email: "hoge2@example.com",
+	family_name: "佐藤",
+	first_name: "太郎",
+	family_kana: "サトウ",
+	first_kana: "タロウ",
+	postal_code: "1234567",
+	street_address: "東京都中央区",
+	tel_number: "09012345678",
+	password: "123456"
+  }
+  ]
+)
