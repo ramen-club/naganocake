@@ -26,8 +26,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:index,:destroy]
   post '/add_item' => 'carts#add_item'
   post '/update_item' => 'carts#update_item'
-  delete '/delete_item/:item_id' => 'carts#delete_item', as: 'delete_item'
-
+ delete '/delete_item/:item_id' => 'carts#delete_item', as: 'delete_item'
   # 配送先テーブル
   resources :delivers
 
@@ -39,8 +38,9 @@ Rails.application.routes.draw do
     resources :items
   end
   # 注文テーブル
-  resources :orders
 
+  # resources :orders
+  resources :orders
   resources :carts, only: [:show]
    post '/add_item' => 'carts#add_item'
    post '/update_item' => 'carts#update_item'
