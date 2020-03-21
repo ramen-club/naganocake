@@ -7,9 +7,9 @@
         <h4>ジャンル検索</h4>
 
         <ul>
-         <% @genre.each do |genre| %>
+         <% @genres.each do |genre| %>
          <li>
-         <% link_to "#{genre.name}" items_path(genre.id) %>
+         <% link_to "#{genre.name}", 'items_path(genre.id)' %>
          </li>
          <% end %>
         </ul>

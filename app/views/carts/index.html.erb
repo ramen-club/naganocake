@@ -1,7 +1,7 @@
 
 <h3 >ショッピングカート</h3>
 <ul class="nav navbar-nav navbar-right">
-  <%= link_to 'カートを空にする', '@cart__detail', method: :destroy, class: 'btn btn-danger test' %>
+  <%= link_to 'カートを空にする', cart_path(@cart), method: :delete, class: 'btn btn-danger test' %>
 </ul>
   <table class="table table-striped">
     <thead>
@@ -14,15 +14,13 @@
       </tr>
     </thead>
    <tbody>
-    <% @items.each do |item| %>
+    
       <tr>
-        <th><%= item.name%></th>
-        <th>aaa</th>
         <th></th>
-        <th>aaa</th>
-        <th><%= link_to '削除する', 'item.@cart_item__detail', method: :destroy class: 'btn btn-danger' %></th>
+        <th></th>
+        <th></th>
+        <th><%= link_to '削除する', delete_item_path(item_id: Item.all.id), method: :delete, class: 'btn btn-danger' %></th>
       </tr>
-    <% end %>
       <tr>
         <th><%= link_to '買い物を続ける', 'items_path', class: 'btn btn-primary' %><th>
         <th><%= link_to '情報入力に進む', '#', class: 'btn btn-success test' %></th>
