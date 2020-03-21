@@ -5,6 +5,7 @@ class Admin::ItemsController < ApplicationController
 
   def index
     genre = Genre.all
+    item = Item.all
   end
 
   def show
@@ -16,15 +17,20 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    if @item = Item.new(item_params)
-      @genre = Genre.new(genre_params)
-      @genres = Genre.all
-      @item.save(item_params) && @genre.save(genre_params)
+    params[:item][:sale_status] = params[:item][:sale_status].to_i
+    item = Item.new(item_params)
+    item.save
+    #if @item = Item.new(item_params)
+      #@genre = Genre.new(genre_params)
+      #@genres = Genre.all
+      #@item.save(item_params) && @genre.save(genre_params)
       flash[:success] = 'Item registered successfully!!!'
-      redirect_to admins_items_path
-    else
-        render action: :new
-    end
+      redirect_to root_path
+      #redirect_to admins_items_path
+    #else
+
+        #render action: :new
+    #end
   end
 
   def edit
@@ -35,7 +41,7 @@ class Admin::ItemsController < ApplicationController
 
   private
     def item_params
-      params.require(:item).permit(:name, :description, :price, :sale_status, :image)
+      params.require(:item).permit(:name, :description, :price, :sale_status, :image, :genre_id)
     end
 
     def genre_params

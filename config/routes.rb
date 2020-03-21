@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
     resources :genres
+    resources :items
   end
 
   # 注文テーブル
