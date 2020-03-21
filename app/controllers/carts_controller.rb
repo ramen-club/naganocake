@@ -11,15 +11,14 @@ class CartsController < ApplicationController
     @cart_item.quantity += params[:quantity].to_i
     @cart_item.save
     redirect_to current_cart
-  end
+    end
 
-    def index 
-       @cart = current_customer.carts.last
+    def index
+       # @cart = current_customer.carts.last
+       @customer = Customer.find(params[:item_id])
+       @cart_item = @customer.cart_item
        @items = Item.all
        @item = Item.new
-
-       # @crat_detail = Crat.find(params[:id])
-       # @cart_item_detail = Cart_item.find(params[:id])
     end
 
     def create

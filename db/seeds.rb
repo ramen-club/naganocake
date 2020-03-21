@@ -47,3 +47,30 @@ Genre.create!(name: "aaaa",
 
 Item.create!(name: "item_a",
 	genre_id: 1)
+
+Cart.create!(customer_id: 1)
+
+CartItem.create!(item_id: 1,
+	cart_id: 1)
+CartItem.create!(item_id: 1,
+	cart_id: 1)
+
+10.times do |n|
+    Item.create!(
+      genre_id: 1,
+      name: "test#{n + 1}"
+    )
+  end
+2.times do |n|
+    Cart.create!(
+      customer_id: n + 1,
+    )
+  end
+
+10.times do |n|
+    CartItem.create!(
+     item_id: n + 1,
+      cart_id: 1,
+
+    )
+  end
