@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2020_03_19_085334) do
   end
 
   create_table "cart_items", force: :cascade do |t|
+    t.string "item_id"
+    t.string "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -104,11 +106,6 @@ ActiveRecord::Schema.define(version: 2020_03_19_085334) do
     t.string "postal_code"
     t.string "street_address"
     t.integer "order_status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "testos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

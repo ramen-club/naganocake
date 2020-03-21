@@ -10,3 +10,9 @@ Admin.create!(email: "admin@example.jp",
              password:  "ramenclub",
              password_confirmation: "ramenclub",
              admin_flg: true)
+
+Genre.create!(name: "aaaa",
+	is_active: true)
+
+Item.create!(name: "item_a",
+	genre_id: 1)
