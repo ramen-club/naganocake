@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       patch 'active'
     end
   end
+  namespace :admin do
+    resources :customers
+  end
 
   # 商品テーブル
   root to: 'items#top'

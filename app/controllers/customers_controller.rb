@@ -22,7 +22,7 @@ class CustomersController < ApplicationController
   end
 
   def active
-    current_customer.update(is_active: false)
+    current_customer.update(is_active: 0)
     session.destroy
     redirect_to root_path
   end
