@@ -1,0 +1,19 @@
+<h3>注文詳細画面</h3>
+
+<table>
+  <tr>
+    <th>購入者</th>
+    <th><%= order.name %></th>
+  </tr>
+  <tr>
+    <th>配送先</th>
+    <th><%= order.postal_code %><%= order.street_address %></th>
+  </tr>
+  <tr>
+    <th>支払方法</th>
+    <th><%= order.payment_method %></th>
+  </tr>
+  <tr>
+    <th>注文ステータス</th>
+    <th><%= form_with(model: @order) do |f| %>
+          <%= f.select :is_active%>
