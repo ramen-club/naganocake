@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   # 顧客テーブル
   devise_for :customers
   get '/customers/withdraw' => 'customers#withdraw'
-  resources :customers, only: [:show, :edit, :update]
+  resources :customers, only: [:show, :edit, :update] do
+    collection do
+      patch 'active'
+    end
+  end
 
   # 商品テーブル
   root to: 'items#top'
@@ -25,9 +29,16 @@ Rails.application.routes.draw do
   resources :delivers
 
   namespace :admin do
-    resources :orders, only: [:update]
+    resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
     resources :genres
   end
+  # 注文テーブル
+  resources :orders
+  
+  resources :carts, only: [:show] 
+   post '/add_item' => 'carts#add_item'
+   post '/update_item' => 'carts#update_item'
+   delete '/delete_item' => 'carts#delete_item'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

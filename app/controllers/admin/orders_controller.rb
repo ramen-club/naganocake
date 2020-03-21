@@ -1,7 +1,14 @@
 class Admin::OrdersController < ApplicationController
 
-    before_action :if_not_admin
+    # before_action :if_not_admin
 
+  def index
+    @orders = Order.all
+  end
+
+  def show
+    @order = Order.find(params[:id])
+  end
 
     private
   def if_not_admin
