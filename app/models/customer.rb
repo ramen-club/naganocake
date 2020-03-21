@@ -4,8 +4,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # 会員ステータスの定義。有効がtrue、退会済がfalse。
-  enum is_active: { effectiveness: true, invalidation: false}
+  # 会員ステータスの定義。1が有効、0が退会済。
+  enum is_active: { 有効: 1, 退会済: 0, }
 
   has_many :delivers
   has_many :carts, dependent: :destroy
