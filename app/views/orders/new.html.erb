@@ -1,2 +1,11 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<br>
+<h3>注文情報入力</h3>
+<h3><strong>支払方法</strong></h3>
+<%= form_with(model: @order, local: true) do |order| %>
+  <%= order.radio_button :is_active, :on %>
+  <%= order.label :is_active, "クレジットカード", {value: :on}%>
+  <%= order.radio_button :is_active, :off %>
+  <%= order.label :is_active, "銀行振込", {value: :off}%>
+<br>
+<h3><strong>お届け先</strong></h3>
+<%= order.radio_button :%>

@@ -21,6 +21,15 @@ class CartsController < ApplicationController
        @item = Item.new
     end
 
+    def index 
+       @cart = current_customer.carts.last
+       @items = Item.all
+       @item = Item.new
+
+       # @crat_detail = Crat.find(params[:id])
+       # @cart_item_detail = Cart_item.find(params[:id])
+    end
+
     def create
         current_customers.cart(params[:item_id])
         redirect_to action: :sow
