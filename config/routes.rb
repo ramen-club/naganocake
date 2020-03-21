@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   # 顧客テーブル
   devise_for :customers
   get '/customers/withdraw' => 'customers#withdraw'
-  resources :customers, only: [:show, :edit, :update]
+  resources :customers, only: [:show, :edit, :update] do
+    collection do
+      patch 'active'
+    end
+  end
 
   # 商品テーブル
   root to: 'items#top'
@@ -24,25 +28,16 @@ Rails.application.routes.draw do
   # 配送先テーブル
   resources :delivers
 
-<<<<<<< HEAD
-  namespace :admins do
-    resources :orders, only: [:update]
-=======
+
   namespace :admin do
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
->>>>>>> b03b74783303f2e5923f471d4d33bc3325c8c7df
     resources :genres
-    resources :items
   end
 
-<<<<<<< HEAD
-  resources :carts, only: [:show]
-=======
   # 注文テーブル
   resources :orders
-  
-  resources :carts, only: [:show] 
->>>>>>> b03b74783303f2e5923f471d4d33bc3325c8c7df
+
+  resources :carts, only: [:show]
    post '/add_item' => 'carts#add_item'
    post '/update_item' => 'carts#update_item'
    delete '/delete_item' => 'carts#delete_item'
