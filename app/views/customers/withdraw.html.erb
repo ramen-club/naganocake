@@ -5,4 +5,4 @@
 
 <%= link_to "退会しない", customer_path(@customer), class: "btn btn-primary" %>
 <!-- 「退会する」ボタンは現状「ログアウト」機能になってます。ステータス切替に修正が必要 -->
-<%= link_to '退会する', destroy_customer_session_path, method: :delete, class: 'btn btn-danger' %>
+<%= link_to '退会する', active_customers_path, method: :patch, class: 'btn btn-danger' %>

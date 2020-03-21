@@ -21,6 +21,13 @@ class CustomersController < ApplicationController
     @customer = Customer.find(current_customer.id)
   end
 
+  def active
+    current_customer.update(is_active: false)
+    session.destroy
+    redirect_to root_path
+  end
+
+
   private
     def customer_params
        params.require(:customer).permit(:family_name, :first_name, :family_kana, :first_kana, :email, :postal_code, :street_address, :tel_number)
