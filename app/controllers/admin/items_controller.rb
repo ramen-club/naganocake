@@ -4,12 +4,11 @@ class Admin::ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :destroy]
 
   def index
-    genre = Genre.all
-    item = Item.all
+    @items = Item.all
   end
 
   def show
-    @item = item.find(params[:id])
+    @items = item.find(params[:id])
   end
 
   def new
@@ -18,25 +17,27 @@ class Admin::ItemsController < ApplicationController
 
   def create
     params[:item][:sale_status] = params[:item][:sale_status].to_i
-    item = Item.new(item_params)
-    item.save
-    #if @item = Item.new(item_params)
-      #@genre = Genre.new(genre_params)
-      #@genres = Genre.all
-      #@item.save(item_params) && @genre.save(genre_params)
+    @item = Item.new(item_params)
+    if @item.save
       flash[:success] = 'Item registered successfully!!!'
-      redirect_to root_path
-      #redirect_to admins_items_path
-    #else
-
-        #render action: :new
-    #end
+      redirect_to admin_items_path
+    else
+      render action: :new
+    end
   end
 
   def edit
+    @item = Item.find[params[:id]]
   end
 
   def update
+    params[:item][:sale_status] = params[:item][:sale_status].to_i
+    @item = Item.find[params[:id]]
+    if @item.update(item_params)
+      flash[:success] = 'Item edited successfully!!!'
+      redirect_to item_path(@item)
+    else
+      render action: :edit
   end
 
   private
