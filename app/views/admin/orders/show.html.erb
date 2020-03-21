@@ -9,7 +9,7 @@
     <th>配送先</th>
     <th><%= @order.postal_code %>
         <%= @order.street_address %></th>
-    <%# <% binding.pry %> %>
+    <%# <% binding.pry %>
   </tr>
   <tr>
     <th>支払方法</th>
@@ -23,4 +23,21 @@
              <%= f.submit "更新"%>
         <% end %></th>
   </tr>
+</table>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込み）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>注文詳細が出来次第追加</td>
+    </tr>
+  </tbody>
 </table>
