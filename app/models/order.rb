@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
 
-
+    belongs_to :deliver
     belongs_to :customer
 
     enum order_status: {
