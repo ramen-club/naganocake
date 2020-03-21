@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   # 顧客テーブル
   devise_for :customers
   get '/customers/withdraw' => 'customers#withdraw'
-  resources :customers, only: [:show, :edit, :update]
+  resources :customers, only: [:show, :edit, :update] do
+    collection do
+      patch 'active'
+    end
+  end
 
   # 商品テーブル
   root to: 'items#top'
