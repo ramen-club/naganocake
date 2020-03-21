@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   # 商品テーブル
   root to: 'items#top'
   resources :items, only: [:index, :show]
-  resources :carts, only: [:show]
+  resources :carts, only: [:index,:destroy]
   post '/add_item' => 'carts#add_item'
   post '/update_item' => 'carts#update_item'
-  delete '/delete_item' => 'carts#delete_item'
+  delete '/delete_item/:item_id' => 'carts#delete_item', as: 'delete_item'
 
   # 配送先テーブル
   resources :delivers
@@ -35,7 +35,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
     resources :genres
   end
-
   # 注文テーブル
   resources :orders
   

@@ -1,1 +1,24 @@
-top
+<div class="container">
+    <div class="row">
+	    <div class="col-xs-3">
+
+
+        <h4>ジャンル検索</h4>
+
+        <ul>
+         <% @genres.each do |genre| %>
+         <li>
+         <% link_to "#{genre.name}", 'items_path(genre.id)' %>
+         </li>
+         <% end %>
+        </ul>
+
+        </div>
+
+        <div class="col-xs-9">
+
+<%# 途中で投げ出してadminでitemの新規作成の作業に移りました。 %>
+
+        </div>
+        </div>
+        </div>
