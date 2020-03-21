@@ -31,15 +31,17 @@ Rails.application.routes.draw do
   # 配送先テーブル
   resources :delivers
 
+
   namespace :admin do
     #admin側のorderテーブル
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
     resources :genres
+    resources :items
   end
   # 注文テーブル
   resources :orders
-  
-  resources :carts, only: [:show] 
+
+  resources :carts, only: [:show]
    post '/add_item' => 'carts#add_item'
    post '/update_item' => 'carts#update_item'
    delete '/delete_item' => 'carts#delete_item'

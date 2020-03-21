@@ -5,4 +5,6 @@ class Item < ApplicationRecord
     has_many :order_details, dependent: :destroy
     attachment :image
 
+    enum sale_status: {販売中: 0, 売切れ: 1}
+
 end
