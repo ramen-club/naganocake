@@ -8,6 +8,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string "image_id"
       t.integer "sale_status"
       t.timestamps
+      # こめんと
     end
   end
 end
