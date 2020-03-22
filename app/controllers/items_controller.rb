@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   	@customer = Customer.find(current_customer.id)
     end
     @genres = Genre.all
+    @items = Item.limit(4)
   end
 
   def index

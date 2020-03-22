@@ -6,9 +6,8 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer "genre_id"
       t.integer "price"
       t.string "image_id"
-      t.integer "sale_status"
+      t.integer "sale_status", default: 0, null: false
       t.timestamps
-      # こめんと
     end
   end
 end
