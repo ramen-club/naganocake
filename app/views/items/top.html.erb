@@ -1,19 +1,9 @@
 <div class="container">
 <div class="row">
 
-  <!-- ジャンル検索サイドバー -->
   <div class="col-xs-3">
-    <h4>ジャンル検索</h4>
-    <ul>
-      <% @genres.each do |genre| %>
-      <li>
-      <!-- ↓リンクではなくジャンルの検索機能にする -->
-        <%= link_to items_path do %>
-        <%= genre.name %>
-        <% end %>
-      </li>
-      <% end %>
-    </ul>
+    <!-- ジャンル検索サイドバー -->
+    <%= render 'genre_search', genres: @genres %>
   </div>
 
   <div class="col-xs-9">

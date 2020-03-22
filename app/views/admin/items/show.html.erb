@@ -1,11 +1,15 @@
+<h2>商品詳細画面</h2>
+
 <ul>
-    <li><%= attachment_image_tag @item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'80x80' %></li>
-    <li>商品名：<%= @item.name %></li>
-    <li>商品説明：<%= @item.description %></li>
-    <li>ジャンル：<%= @item.genre.name %></li>
-    <li>税込価格（税抜価格）： <%= @item.price %></li>
-    <li>販売ステータス：<%= @item.sale_status %></li>
-    <li><%= link_to edit_admin_item_path(@item) do %>
-        <span class="btn btn-default">編集する</span>
-        <% end %></li>
+	<li><%= attachment_image_tag @item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'300x200' %></li>
+	<li>商品名：<%= @item.name %></li>
+	<li>商品説明：<%= @item.description %></li>
+	<li>ジャンル：<%= @item.genre.name %></li>
+	<li>税込価格（税抜価格）： <%= number_with_delimiter(@item.price) %></li>
+	<li>販売ステータス：<%= @item.sale_status %></li>
+	<li>
+		<%= link_to edit_admin_item_path(@item) do %>
+		<span class="btn btn-default">編集する</span>
+		<% end %>
+	</li>
 </ul>

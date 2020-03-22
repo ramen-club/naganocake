@@ -14,9 +14,8 @@
     <div class="container">
       <nav class="nav navbar-nav navbar-left">
         <div class="panel panel-default test">
-          <div class="panel-body">
-            ながのCAKE
-          </div>
+            <!-- ↓リンク先がルートパスになってるので、管理者ログイン時のトップページにも行けるようにしたい -->
+            <%= link_to(image_tag("logo.png", size: "344*65"), root_path) %>
         </div>
       </nav>
       <nav>

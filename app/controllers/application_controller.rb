@@ -11,8 +11,7 @@ class ApplicationController < ActionController::Base
   	  root_path
   	end
   end
-  
-  # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
+
   before_action :configure_permitted_parameters, if: :devise_controller?
    def current_cart
       if session[:cart_id]
@@ -23,7 +22,9 @@ class ApplicationController < ActionController::Base
         @cart
       end
     end
+
   protected
+  # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :family_kana, :first_kana, :postal_code, :street_address, :tel_number])
   end
