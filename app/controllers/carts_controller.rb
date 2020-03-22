@@ -13,16 +13,11 @@ class CartsController < ApplicationController
     redirect_to current_cart
     end
 
-    def index
-       # @cart = current_customer.carts.last
-       @customer = Customer.find(params[:item_id])
-       @cart_item = @customer.cart_item
-       @items = Item.all
-       @item = Item.new
-    end
-
     def index 
-       @cart = current_customer.carts.last
+       # @cart = current_customer.carts.last
+       @carts = current_customer.relations
+       # @carts = current_customer.carts
+
        @items = Item.all
        @item = Item.new
 
@@ -53,7 +48,7 @@ class CartsController < ApplicationController
     def destroy
         binding.pry
         @cart = current_cart
-        cart = Crat.find(params[:id])
+        cart = Crat.find(params[:item_id])
         @cart.destroy
         session[:cart_id] = nil
         redirect_to current_cart
