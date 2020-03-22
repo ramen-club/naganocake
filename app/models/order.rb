@@ -11,5 +11,5 @@ class Order < ApplicationRecord
         発送済み: 4,
     }
 
-    enum deliver_id: { Customer.deliver.id.all }
+    # enum deliver_id: { Customer.deliver.id.all }
 end
