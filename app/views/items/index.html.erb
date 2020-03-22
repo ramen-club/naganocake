@@ -6,9 +6,8 @@
         <h4>ジャンル検索</h4>
 
         <ul>
-         <% @genre.items.each do |item| %>
-         <li>
-         </li>
+         <% @items.each do |item| %>
+         <li><%= item.name %></li>
          <% end %>
         </ul>
 

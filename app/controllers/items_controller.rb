@@ -9,9 +9,9 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @carts = Carts.all
-    @item = Item.all
-    @genre = Genre.all
+    @carts = Cart.all
+    @items = Item.all
+    # @genre = Genre.all
   end
 
   def show
