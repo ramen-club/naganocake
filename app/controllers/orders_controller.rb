@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def new
-    @order = current_customer.order.new(order_params)
+    @order = Order.new
   end
 
   def index
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.require(:order).permit(:name, :payment_method, :postal_code, :street_address)
+      params.require(:order).permit(:name, :customer_id, :deliver_id, :payment_method, :postal_code, :street_address)
     end
  
 end
