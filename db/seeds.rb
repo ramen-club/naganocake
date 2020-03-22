@@ -14,63 +14,52 @@ Admin.create!(email: "admin@example.jp",
              password_confirmation: "ramenclub",
              admin_flg: true)
 
-# 顧客のテストデータ
-Customer.create!(
+# 顧客のテストデータ20件
+20.times do |n|
+    Customer.create!(
+      email: "hoge#{n + 1}@example.com",
+      family_name: "山田",
+      first_name: "太郎#{n + 1}",
+      family_kana: "ヤマダ",
+      first_kana: "タロウ",
+      postal_code: "1500041",
+      street_address: "東京都渋谷区神南#{n + 1}丁目",
+      tel_number: "036869470#{n + 1}",
+      password: "123456"
+    )
+  end
+
+# ジャンルのテストデータ4件
+Genre.create!(
   [
-  {
-	email: "hoge@example.com",
-	family_name: "山田",
-	first_name: "花子",
-	family_kana: "ヤマダ",
-	first_kana: "ハナコ",
-	postal_code: "1500041",
-	street_address: "東京都渋谷区神南1丁目19-11",
-	tel_number: "0368694700",
-	password: "123456"
-  },
-  {
-  	email: "hoge2@example.com",
-	family_name: "佐藤",
-	first_name: "太郎",
-	family_kana: "サトウ",
-	first_kana: "タロウ",
-	postal_code: "1234567",
-	street_address: "東京都中央区",
-	tel_number: "09012345678",
-	password: "123456"
-  }
+  {name: "ケーキ"},
+  {name: "焼き菓子"},
+  {name: "プリン"},
+  {name: "キャンディ"}
   ]
 )
 
-Genre.create!(name: "aaaa",
-	is_active: true)
-
-Item.create!(name: "item_a",
-	genre_id: 1)
-
-Cart.create!(customer_id: 1)
-
-CartItem.create!(item_id: 1,
-	cart_id: 1)
-CartItem.create!(item_id: 1,
-	cart_id: 1)
-
+# 商品のテストデータ10件
 10.times do |n|
     Item.create!(
+      name: "test_item#{n + 1}",
+      description: "テスト商品その#{n + 1}",
       genre_id: 1,
-      name: "test#{n + 1}"
-    )
-  end
-2.times do |n|
-    Cart.create!(
-      customer_id: n + 1,
+      price: "250"
     )
   end
 
+# カートのテストデータ2件
+2.times do |n|
+    Cart.create!(
+      customer_id: n + 1
+    )
+  end
+
+# カート内商品のテストデータ10件
 10.times do |n|
     CartItem.create!(
      item_id: n + 1,
-      cart_id: 1,
-
+      cart_id: 1
     )
   end
