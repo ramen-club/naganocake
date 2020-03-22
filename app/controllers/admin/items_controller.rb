@@ -41,6 +41,7 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
+  # 間違えてき術してしまったが削除機能は不要
   def destroy
     item = Item.find(params[:id])
     item.destroy
