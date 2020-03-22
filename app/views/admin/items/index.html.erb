@@ -1,9 +1,4 @@
-<div class="container">
-<div class="row">
-<div class="col-xs-3">
-</div>
-<div class="col-xs-9">
-
+<h2>商品一覧画面</h2>
 
 <table class="table table-hover table-inverse">
 	<thead>
@@ -20,15 +15,10 @@
 		<tr>
 			<td><%= item.id %></td>
 			<td><%= link_to item.name, admin_item_path(item) %></td>
-			<td><%= item.price %></td>
-            <%# ↑カンマの表示をつける。例えば、1200ならｍ1,200と表示されるようにしたい %>
+			<td><%= number_with_delimiter(item.price) %></td>
 			<td><%= item.genre.name %></td>
 			<td><%= item.sale_status %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-
-</div>
-</div>
-</div>
