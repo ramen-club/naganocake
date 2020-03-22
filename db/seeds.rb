@@ -29,6 +29,16 @@ Admin.create!(email: "admin@example.jp",
     )
   end
 
+# 配送先のテストデータ
+5.times do |n|
+    Deliver.create!(
+      customer_id: n + 1,
+      name: "佐藤花子#{n + 1}",
+      postal_code: "1001234",
+      street_address: "北海道札幌市#{n + 1}丁目",
+    )
+  end
+
 # ジャンルのテストデータ4件
 Genre.create!(
   [
@@ -45,7 +55,7 @@ Genre.create!(
       name: "test_item#{n + 1}",
       description: "テスト商品その#{n + 1}",
       genre_id: 1,
-      price: "250"
+      price: "1500"
     )
   end
 
