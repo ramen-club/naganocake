@@ -22,19 +22,18 @@
       <nav>
         <ul class="nav navbar-nav navbar-right">
           <% if customer_signed_in? %>
-            
             <%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-default test' %>
-            <%= link_to '商品一覧', '#', class: 'btn btn-default test' %>
+            <%= link_to '商品一覧', items_path, class: 'btn btn-default test' %>
             <%= link_to 'カート', carts_path, class: 'btn btn-default test' %>
             <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'btn btn-default test' %>
           <% elsif admin_signed_in? %>
-            <%= link_to '商品一覧', '#', class: 'btn btn-default test' %>
+            <%= link_to '商品一覧', admin_items_path, class: 'btn btn-default test' %>
             <%= link_to '会員一覧', admin_customers_path, class: 'btn btn-default test' %>
-            <%= link_to '注文履歴一覧', '#', class: 'btn btn-default test' %>
-            <%= link_to 'ジャンル管理', '#', class: 'btn btn-default test' %>
+            <%= link_to '注文履歴一覧', admin_orders_path, class: 'btn btn-default test' %>
+            <%= link_to 'ジャンル管理', admin_genres_path, class: 'btn btn-default test' %>
             <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-default test' %>
           <% else %>
-            <%= link_to '商品一覧', '#', class: 'btn btn-default test' %>
+            <%= link_to '商品一覧', items_path, class: 'btn btn-default test' %>
             <%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-default test' %>
             <%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-default test' %>
             <%= link_to '管理者はこちら', new_admin_session_path %>
