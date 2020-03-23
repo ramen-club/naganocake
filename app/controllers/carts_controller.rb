@@ -13,9 +13,9 @@ class CartsController < ApplicationController
     redirect_to current_cart
     end
 
-    def index 
-       @carts = current_customer.carts.last
-       # @cart = Cart.find(2)
+    def index
+       @carts = current_customer.cart
+       # @cart = Cart.find
        @cart_items = current_customer.relations
        # @carts = current_customer.carts
        # @crat_detail = Crat.find(params[:id])
