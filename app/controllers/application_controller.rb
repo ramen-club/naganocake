@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_cart, :logged_in?
 
   # ログイン後に遷移するページを顧客と管理者で分ける
@@ -13,16 +13,14 @@ class ApplicationController < ActionController::Base
   	end
   end
   # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
-  before_action :configure_permitted_parameters, if: :devise_controller?
-   def current_cart
+  def current_cart
     logger.debug(session[:cart_id])
-      if session[:cart_id]
-        @cart = Cart.find(session[:cart_id])
-      else
-        @cart = current_customer.carts.create
-        session[:cart_id] = @cart.id
-      end
+    if current_customer.cart.nil?
+      current_customer.build_cart
+      current_customer.cart.save
     end
+    @cart = current_customer.cart
+  end
 
   protected
   # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
