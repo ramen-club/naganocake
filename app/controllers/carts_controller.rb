@@ -15,7 +15,7 @@ class CartsController < ApplicationController
 
     def index 
        @carts = current_customer.carts.last
-       # @cart = Cart.find(2)
+       # @cart = Cart.find
        @cart_items = current_customer.relations
        # @carts = current_customer.carts
        # @crat_detail = Crat.find(params[:id])
