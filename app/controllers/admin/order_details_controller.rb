@@ -1,7 +1,7 @@
 class Admin::OrderDetailsController < ApplicationController
 
   before_action :if_not_admin
-  before_action :set_item, only: [:edit]
+  before_action :set_order_detail, only: [:edit]
 
   def edit
     @order_detail = OrderDetail.find(params[:id])
@@ -15,17 +15,18 @@ class Admin::OrderDetailsController < ApplicationController
 
   def index
     @order_details = OrderDetail.page(params[:page]).reverse_order
-    @order_detail = OrderDetail.find(params[:id])
   end
 
   private
+  def order_detail_params
   params.require(:order_detail).permit(:order_id, :production_status)
+  end
 
   def if_not_admin
     redirect_to root_path unless current_admin.admin_flg?
   end
 
-  def set_item
-    @item = OrderDetail.find(params[:id])
+  def set_order_detail
+    @order_detail = OrderDetail.find(params[:id])
   end
 end

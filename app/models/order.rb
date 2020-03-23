@@ -2,6 +2,7 @@ class Order < ApplicationRecord
 
     belongs_to :deliver
     belongs_to :customer
+    has_many :order_details, dependent: :destroy
 
     enum order_status: {
         入金待ち: 0,
