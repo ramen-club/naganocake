@@ -1,0 +1,22 @@
+<div class="container">
+<div class="row">
+
+  <div class="col-xs-3">
+    <!-- ジャンル検索サイドバー -->
+    <%= render 'genre_search', genres: @genres %>
+  </div>
+
+  <div class="col-xs-9">
+    <!-- 商品詳細 -->
+  <ul>
+    <li><%= attachment_image_tag @item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'300x200' %></li>
+    <li><h2><%= @item.name %></h2></li>
+    <li><%= @item.description %></li>
+    <li><h3><%= number_with_delimiter(@item.price) %>(税込)</h3></li>
+    <li><!-- 個数選択プルダウンを設置 --></li>
+    <li><!-- カートに入れるボタンを設置 --></li>
+  </ul>
+  </div>
+
+</div>
+</div>
