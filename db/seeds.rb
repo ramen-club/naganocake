@@ -83,21 +83,24 @@ Genre.create!(
 
 # 注文のテストデータ10件
 10.times do |n|
-    Order.create!(
-      customer_id: 1,
-      charge: "3000",
-      name: "田中二郎#{n + 1}",
-      postal_code: "1009876",
-      street_address: "大阪府#{n + 1}",
-      deliver_id: 1
-    )
-  end
+  Order.create!(
+    customer_id: 1,
+    charge: "3000",
+    name: "田中二郎#{n + 1}",
+    postal_code: "1009876",
+    street_address: "大阪府#{n + 1}",
+    order_status: 0,
+    deliver_id: 1
+  )
+end
+
 # 注文ID１の注文明細のテストデータ3件
 3.times do |n|
-    OrderDetail.create!(
-      order_id: 1,
-      item_id: n + 1,
-      count: n + 1,
-      order_amount: "500",
-    )
-  end
+  OrderDetail.create!(
+    order_id: 1,
+    item_id: n + 1,
+    count: n + 1,
+    production_status: 0,
+    order_amount: "500"
+  )
+end
