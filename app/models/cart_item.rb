@@ -4,7 +4,7 @@ class CartItem < ApplicationRecord
   	def subtotal
 		price = 0
 		cart_items.each do |cart_item|
-		price += cart_item.item.item.price * cart_item.item.item.count
+		price += cart_item.item.price * cart_item.item.count
 		end
 		return price
 	end
