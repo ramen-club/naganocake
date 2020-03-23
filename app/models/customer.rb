@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   enum is_active: { 有効: 1, 退会済: 0, }
 
   has_many :delivers
-  has_many :carts, dependent: :destroy
-  has_many :relations,through: :carts,source: :cart_items
+  has_one :cart, dependent: :destroy
+  has_many :relations,through: :cart,source: :cart_items
   has_many :orders, dependent: :destroy
 end
