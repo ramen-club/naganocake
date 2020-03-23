@@ -5,9 +5,11 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.find(params[:id])
   end
 
   def show
+    @orders = Order.find(current_customer.id)
   end
 
   def create

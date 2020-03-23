@@ -35,7 +35,7 @@ Admin.create!(email: "admin@example.jp",
       customer_id: n + 1,
       name: "佐藤花子#{n + 1}",
       postal_code: "1001234",
-      street_address: "北海道札幌市#{n + 1}丁目",
+      street_address: "北海道札幌市#{n + 1}丁目"
     )
   end
 
@@ -77,5 +77,17 @@ Genre.create!(
     CartItem.create!(
      item_id: n + 1,
       cart_id: 2
+    )
+  end
+
+# 注文のテストデータ10件
+10.times do |n|
+    Order.create!(
+      customer_id: 1,
+      charge: "3000",
+      name: "田中二郎#{n + 1}",
+      postal_code: "1009876",
+      street_address: "大阪府#{n + 1}",
+      deliver_id: 1
     )
   end
