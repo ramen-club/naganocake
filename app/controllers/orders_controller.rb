@@ -5,11 +5,13 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.find(params[:id])
+    @customer = current_customer
+    @orders = @customer.orders
   end
 
   def show
-    @orders = Order.find(current_customer.id)
+    @order = Order.find(params[:id])
+
   end
 
   def create
