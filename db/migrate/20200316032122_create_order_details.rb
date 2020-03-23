@@ -6,7 +6,7 @@ class CreateOrderDetails < ActiveRecord::Migration[5.2]
       t.integer "item_id"
       t.integer "count"
       t.integer "order_amount"
-      t.integer "production_status"
+      t.integer "production_status", default: 0
 
       t.timestamps
     end

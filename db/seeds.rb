@@ -92,3 +92,12 @@ Genre.create!(
       deliver_id: 1
     )
   end
+# 注文ID１の注文明細のテストデータ3件
+3.times do |n|
+    OrderDetail.create!(
+      order_id: 1,
+      item_id: n + 1,
+      count: n + 1,
+      order_amount: "500",
+    )
+  end
