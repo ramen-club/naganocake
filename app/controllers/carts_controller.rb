@@ -17,9 +17,6 @@ class CartsController < ApplicationController
        @carts = current_customer.cart
        # @cart = Cart.find
        @cart_items = current_customer.relations
-       # @carts = current_customer.carts
-       # @crat_detail = Crat.find(params[:id])
-       # @cart_item_detail = Cart_item.find(params[:id])
     end
 
     def create
@@ -28,11 +25,15 @@ class CartsController < ApplicationController
     end
 
      def update_item
+        @cart_item = CartItem.find(params[:cart_item_id])
+        @cart_item.count = params[:cart_item][:count]
+        @cart_item.update(cart_item_params)
+        redirect_to carts_path
         # @cart_item = Cart.find(params[:id])
         # @cart.update(cart_params)
         # redirect_back(fallback_location: root_path)
-        @cart_item.update(quantity: params[:quantity].to_i)
-        redirect_to current_cart
+        # @cart_item.update(quantity: params[:quantity].to_i)
+        # redirect_to current_cart
     end
         # 商品消去
     def delete_item
@@ -45,7 +46,6 @@ class CartsController < ApplicationController
     def destroy
         # @cart = current_cart
         cart = Cart.find(params[:id])
-       
         cart.cart_items.each do|cart_item|
         cart_item.destroy
         end
@@ -56,6 +56,10 @@ class CartsController < ApplicationController
     end
 
     private
+
+    def cart_item_params
+      params.require(:cart_item).permit(:count)
+    end
 
     def setup_cart_item!
     @cart_item = current_cart.cart_items.find_by(item_id: params[:item_id])
