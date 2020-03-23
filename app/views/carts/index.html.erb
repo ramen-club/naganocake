@@ -17,17 +17,21 @@
     <% @cart_items.each do |cart_item| %>
     <tr>
       <th><%= cart_item.item.name %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= cart_item.item.price %></th>
+      <th><%= form_for cart_item, url: update_item_path(cart_item) do |f| %>
+        <%= f.number_field :count, min: 0, max: 100 %>
+        <%=  f.submit '更新', class: 'btn btn-primary' %>
+          <% end %>
+        </th>
+      <th><%= cart_item.subtotal %></th>
       <th><%= link_to '削除する', delete_item_path(cart_item.id), method: :delete, class: 'btn btn-danger' %></th>
       <% end %>
     </tr>
     <tr>
-      <th><%= link_to '買い物を続ける', 'items_path', class: 'btn btn-primary' %></th>
-        <th><%= link_to '情報入力に進む', '#', class: 'btn btn-success test' %></th>
+      <th><%= link_to '買い物を続ける', items_path, class: 'btn btn-primary' %></th>
+        <th><%= link_to '情報入力に進む', new_order_path, class: 'btn btn-success test' %></th>
         <th colspan="1"></th>
-      <th>合計金額</th>
+      <th><%=link_to '合計金額' %> <%= current_customer.cart.total %></th>
     </tr>
   </tbody>
 
