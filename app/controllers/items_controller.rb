@@ -12,6 +12,11 @@ class ItemsController < ApplicationController
   end
 
   def index
+
+    @carts = Cart.all
+    @items = Item.all
+    # @genre = Genre.all
+
     @genres = Genre.all
     # urlにgenre_id(params)がある場合
     if params[:genre_id]
