@@ -14,5 +14,12 @@ class Order < ApplicationRecord
         発送済み: 4,
     }
 
+    def total_price
+        price = 0
+        order_details.each do |order_detail|
+          price +=  order_detail.item.price * order_detail.count
+        end
+    end
+
     # enum deliver_id: { Customer.deliver.id.all }
 end
