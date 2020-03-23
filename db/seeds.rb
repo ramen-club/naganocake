@@ -71,7 +71,7 @@ Genre.create!(
     CartItem.create!(
      item_id: n + 1,
       cart_id: 1,
-      count: 2
+      count: 2,
     )
   end
   10.times do |n|
