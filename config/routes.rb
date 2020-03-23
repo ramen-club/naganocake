@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show], param: :id
   resources :carts, only: [:index,:destroy]
   post '/add_item' => 'carts#add_item'
-  post '/update_item' => 'carts#update_item'
+  patch '/carts/:cart_item_id' => 'carts#update_item', as: 'update_item'
   delete '/delete_item/:cart_item_id' => 'carts#delete_item', as: 'delete_item'
 
   # 配送先テーブル
@@ -47,10 +47,5 @@ Rails.application.routes.draw do
 
   # resources :orders
   resources :orders
-  resources :carts, only: [:show]
-   post '/add_item' => 'carts#add_item'
-   post '/update_item' => 'carts#update_item'
-   delete '/delete_item' => 'carts#delete_item'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
