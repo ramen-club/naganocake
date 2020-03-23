@@ -1,11 +1,33 @@
 <br>
 <h3>注文情報入力</h3>
-<h3><strong>支払方法</strong></h3>
-<%= form_with(model: @order, local: true) do |order| %>
-  <%= order.radio_button :is_active, :on %>
-  <%= order.label :is_active, "クレジットカード", {value: :on}%>
-  <%= order.radio_button :is_active, :off %>
-  <%= order.label :is_active, "銀行振込", {value: :off}%>
+
+
+<%= form_with(model: @order, url: order_path(orders_path)) do |order| %>
+  
+    <p><strong>支払方法</strong></p>
+    
+      <%= order.radio_button :payment_method, :on %>
+      <%= order.label :payment_method, "クレジットカード", {value: :on}%>
+    
+      <%= order.radio_button :payment_method, :off %>
+      <%= order.label :payment_method, "銀行振込", {value: :off}%>
+    
 <br>
-<h3><strong>お届け先</strong></h3>
-<%= order.radio_button :%>
+<p><strong>お届け先</strong></p>
+    
+        <%= radio_button_tag :sloppy_id, :order_customer_id%>
+        <%= order.label :deliver_id, "ご自身の住所" %>
+        <p><%= "〒" + current_customer.postal_code + current_customer.street_address + current_customer.family_name + current_customer.first_name %><p>
+      <br>
+        <%= radio_button_tag :sloppy_id, :order_deliver_id%>
+        <%= order.label :deliver_id, "登録済住所から撰択"%>
+        <%= current_customer.delivers.select :{|address| [address.street_address, address.id]}%>
+      <br>
+        <%= radio_button_tag :sloppy_id, :order %>
+        <%= order.label :deliver_id, "新しいお届け先"%><br>
+        <%= "郵便番号(ハイフンなし)" %><%= order.text_field :postal_code %><br>
+        <%= "住所" %><%= order.text_field :street_address %><br>
+        <%= "宛名" %><%= order.text_field :name %>
+      <br>
+        <%= order.submit "確認画面へ進む" %>
+<% end %>

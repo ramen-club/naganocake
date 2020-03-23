@@ -73,3 +73,9 @@ Genre.create!(
       cart_id: 1
     )
   end
+  10.times do |n|
+    CartItem.create!(
+     item_id: n + 1,
+      cart_id: 2
+    )
+  end

@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
 
-
+    belongs_to :deliver
     belongs_to :customer
 
     enum order_status: {
@@ -10,4 +10,6 @@ class Order < ApplicationRecord
         発送準備中: 3,
         発送済み: 4,
     }
+
+    # enum deliver_id: { Customer.deliver.id.all }
 end

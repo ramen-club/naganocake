@@ -26,16 +26,15 @@ ActiveRecord::Schema.define(version: 2020_03_21_105341) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.string "item_id"
-    t.string "cart_id"
+    t.integer "item_id"
+    t.integer "cart_id"
+    t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "carts", force: :cascade do |t|
     t.integer "customer_id"
-    t.integer "item_id"
-    t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -71,7 +70,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_105341) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_active"
+    t.integer "is_active", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

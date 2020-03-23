@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  helper_method :current_cart
+  helper_method :current_cart, :logged_in?
 
   # ログイン後に遷移するページを顧客と管理者で分ける
   def after_sign_in_path_for(resource)
@@ -8,18 +8,19 @@ class ApplicationController < ActionController::Base
   	when Admin
   	  admins_top_path
   	when Customer
+      current_cart
   	  root_path
   	end
   end
-
+  # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
   before_action :configure_permitted_parameters, if: :devise_controller?
    def current_cart
+    logger.debug(session[:cart_id])
       if session[:cart_id]
         @cart = Cart.find(session[:cart_id])
       else
-        @cart = Cart.create
+        @cart = current_customer.carts.create
         session[:cart_id] = @cart.id
-        @cart
       end
     end
 
