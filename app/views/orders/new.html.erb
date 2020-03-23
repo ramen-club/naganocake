@@ -21,7 +21,7 @@
       <br>
         <%= radio_button_tag :sloppy_id, :order_deliver_id%>
         <%= order.label :deliver_id, "登録済住所から撰択"%>
-        <%= current_customer.delivers.collect{|address| [address.street_address, address.id]}%>
+        <%= current_customer.delivers.select :{|address| [address.street_address, address.id]}%>
       <br>
         <%= radio_button_tag :sloppy_id, :order %>
         <%= order.label :deliver_id, "新しいお届け先"%><br>
