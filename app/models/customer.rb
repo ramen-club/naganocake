@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # 会員ステータスの定義。1が有効、0が退会済。
-  enum is_active: { 有効: 1, 退会済: 0, }
+  enum is_active: { 有効: 1, 退会済: 0 }
 
   has_many :delivers
   has_one :cart, dependent: :destroy
