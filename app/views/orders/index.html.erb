@@ -1,2 +1,86 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<br>
+<h3>注文情報入力</h3>
+
+<table class = "table" >
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+    <tbody>
+    <%= @items.each do |item| %>
+      <tr>
+        <td>
+          <%= attachment_image_tag item, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'150×100' %>
+          <%= item.item_id.name %>
+        </td>
+        <td><%= number_with_delimiter(item.item_id.price) %></td>
+        <td><%= item.count %></td>
+        <td><%= current_customer.cart_item.item.price * current_customer.cart_item.count %></td><%#itemの小計%>
+      </tr>
+      <% end %>
+    </tbody>
+</table>    
+<table class = "table" >
+  <thead>
+    <tr>
+      <th>送料</th>
+      <th><%= Order.payment_method %></th>
+    </tr>
+    <tr>
+      <th>商品合計</th>
+      <th><%= %></th>
+    </tr>
+    <tr>
+      <th>請求金額</th>
+      <th><%= 商品合計 + Order.payment_method %></th>
+    </tr>
+  </thead>
+</table>
+
+<% form_with(model: @order, url:orders_path, method: :post) do |order| %>
+  <%= 支払い方法 %>
+  <%= order.hidden_field :payment_method, value => order.payment_method %>
+  <br>
+  <%= お届け先 %>
+  <%= order.hidden_field :deliver_id, value => order.deliver_id %> 
+  <%= orde.submit %>
+<% end %>
+
+<h1>注文履歴一覧</h1>
+
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<th>注文日</th>
+			<th>配送先</th>
+			<th>注文商品</th>
+			<th>支払金額</th>
+            <th>ステータス</th>
+            <th>注文詳細</th>
+        </tr>
+	</thead>
+	<tbody>
+        <% @orders.each do |order| %>
+		<tr>
+			<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+			<td>
+				<%= order.postal_code %><br>
+				<%= order.street_address %><br>
+				<%= order.name %>
+			</td>
+			<td>
+				<% order.order_details.each do |order_details| %>
+				<%= order_details.item.name %>
+				<% end %>
+			</td>
+			<td><%= number_with_delimiter(order.charge) %></td>
+			<td><%= order.order_status %></td>
+			<td><%= link_to "表示する", order_path(@customer.id), class: "btn btn-primary" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

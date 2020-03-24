@@ -23,18 +23,9 @@
   box-sizing: border-box;
 }
 
+/*ナビゲーションバー*/
 header {
-	min-heigt: 50px;
 	height: 100px;
-}
-
-li {
-	list-style-type: none;
-	line-height: 30px;
-}
-
-.head-nav {
-	padding: 10px;
 }
 
 clearfix {
@@ -42,22 +33,24 @@ clearfix {
 	clear: both;
 }
 
-.test {
-	 margin: 34px 0;
+.navbar-inverse {
+	background-color: #fffacd;
+	border-color: #fafad2;
 }
+
 .total  {
 	 margin: 15px 0;
 }
 .name {
 	height: 50px;
+
+
+.navbar-nav {
+	 margin: 20px 20px;
 }
 
 .body {
 	margin-top: 150px;
-}
-
-span {
-	color: white;
 }
 
 /*トップページ*/
@@ -70,7 +63,15 @@ span {
 }
 
 .main-visual-text {
-	color: steelblue;
+	width: 100%;
+	height: 300px;
+	color: lightyellow;
+	background-color: rgba( 0, 0, 0, 0.2);
 	font-size: 20px;
 	padding-top: 60px;
+}
+
+li {
+	list-style-type: none;
+	line-height: 30px;
 }
