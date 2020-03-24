@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'order_details/edit'
-    get 'order_details/index'
-  end
   # 管理者のログイン・トップページを顧客と分ける為のもの
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
@@ -35,7 +31,6 @@ Rails.application.routes.draw do
   # 配送先テーブル
   resources :delivers
 
-
   namespace :admin do
     #admin側のorderテーブル
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
@@ -48,4 +43,14 @@ Rails.application.routes.draw do
   # resources :orders
   resources :orders
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+  # 注文明細テーブル
+  resources :order_details, only: [:index, :show]
+
+  namespace :admin do
+    get 'order_details/edit'
+    get 'order_details/index'
+  end
+
 end
