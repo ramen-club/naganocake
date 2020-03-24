@@ -1,6 +1,5 @@
 class Deliver < ApplicationRecord
 
-	has_many :orders, dependent: :destroy
 
 	belongs_to :customer
 	validates :name, presence: true

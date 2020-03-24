@@ -90,7 +90,6 @@ Genre.create!(
     postal_code: "1009876",
     street_address: "大阪府#{n + 1}",
     order_status: 0,
-    deliver_id: 1
   )
 end
 
