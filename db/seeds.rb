@@ -92,7 +92,6 @@ Genre.create!(
     postal_code: "1009876",
     street_address: "大阪府堺市中区#{n + 1}丁目",
     order_status: 0,
-    deliver_id: 1
   )
 end
 

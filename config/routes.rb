@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
   # resources :orders
   resources :orders
+   get '/orders/thankyou' => 'orders#thankyou'
   #  get '/thankyou' => ''
   resources :carts, only: [:show]
    post '/add_item' => 'carts#add_item'

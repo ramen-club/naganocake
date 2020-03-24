@@ -1,6 +1,5 @@
 class Order < ApplicationRecord
 
-    belongs_to :deliver
     belongs_to :customer
     has_many :order_details, dependent: :destroy
 
@@ -16,10 +15,16 @@ class Order < ApplicationRecord
     }
 
     enum payment_method: {
-        クレジットカード: 0,
-        銀行振込: 1
+         クレジットカード: 1,
+         銀行振込: 0,
     }
 
-    # enum deliver_id: { Customer.deliver.id.all }
+    def total_price
+        price = 0
+        order_details.each do |order_detail|
+          price +=  order_detail.item.price * order_detail.count
+        end
+    end
 
+    # enum deliver_id: { Customer.deliver.id.all }
 end
