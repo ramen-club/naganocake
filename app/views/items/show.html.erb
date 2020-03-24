@@ -1,21 +1,25 @@
 <div class="container">
 <div class="row">
 
-  <div class="col-xs-3">
+  <div class="col-xs-2">
     <!-- ジャンル検索サイドバー -->
     <%= render 'genre_search', genres: @genres %>
   </div>
 
-  <div class="col-xs-9">
-    <!-- 商品詳細 -->
-  <ul>
-    <li><%= attachment_image_tag @item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'300x200' %></li>
-    <li><h2><%= @item.name %></h2></li>
-    <li><%= @item.description %></li>
-    <li><h3><%= number_with_delimiter(@item.price) %>(税込)</h3></li>
-    <li><!-- 個数選択プルダウンを設置 --></li>
-    <li><!-- カートに入れるボタンを設置 --></li>
-  </ul>
+  <div class="col-xs-4">
+    <%= attachment_image_tag @item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'300x200' %>
+  </div>
+
+  <div class="col-xs-6">
+    <h2><%= @item.name %></h2>
+    <%= @item.description %>
+    <h4><%= number_with_delimiter(@item.price) %>(税込)</h4>
+    <!-- 商品個数選択プルダウン -->
+    <%= form_for @cart_item, url: add_item_path(@cart_item) do |f| %>
+      <%= f.hidden_field :item_id %>
+      <%= f.select :count, [1,2,3,4,5,6,7,8,9] %>
+      <%= f.submit "カートに入れる", class: 'btn btn-primary' %>
+    <% end %>
   </div>
 
 </div>

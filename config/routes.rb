@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'order_details/edit'
-    get 'order_details/index'
-  end
   # 管理者のログイン・トップページを顧客と分ける為のもの
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
@@ -27,6 +23,8 @@ Rails.application.routes.draw do
   # 商品テーブル
   root to: 'items#top'
   resources :items, only: [:index, :show], param: :id
+
+  # カートテーブル
   resources :carts, only: [:index,:destroy]
   post '/add_item' => 'carts#add_item'
   patch '/carts/:cart_item_id' => 'carts#update_item', as: 'update_item'
@@ -34,7 +32,6 @@ Rails.application.routes.draw do
 
   # 配送先テーブル
   resources :delivers
-
 
   namespace :admin do
     #admin側のorderテーブル
@@ -55,4 +52,14 @@ Rails.application.routes.draw do
    delete '/delete_item' => 'carts#delete_item'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+  # 注文明細テーブル
+  resources :order_details, only: [:index, :show]
+
+  namespace :admin do
+    get 'order_details/edit'
+    get 'order_details/index'
+  end
+
 end

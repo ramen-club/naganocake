@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
       @order.street_address = Order.street_address
     else
     end
-    # binding.pry
+    
   end
 
   def show
