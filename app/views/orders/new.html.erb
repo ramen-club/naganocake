@@ -15,16 +15,16 @@
 <br>
 <p><strong>お届け先</strong></p>
     
-        <%= radio_button_tag :sloppy_id, :order_customer_id%>
-        <%= order.label :deliver_id, "ご自身の住所" %>
+        <%= order.radio_button :deliver_id, :"ご自身の住所"%>
+        <%= order.label :deliver_id, "ご自身の住所", {value: "ご自身の住所"} %>
         <p><%= "〒" + current_customer.postal_code + current_customer.street_address + current_customer.family_name + current_customer.first_name %><p>
       <br>
-        <%= radio_button_tag :sloppy_id, :order_deliver_id%>
-        <%= order.label :deliver_id, "登録済住所から撰択"%>
+        <%= order.radio_button :deliver_id, :"登録済住所から撰択"%>
+        <%= order.label :deliver_id, "登録済住所から撰択", {value: "登録済住所から撰択"}%>
         <%= order.collection_select :street_address, @address, :id, :street_address %>
       <br>
-        <%= radio_button_tag :sloppy_id, :order %>
-        <%= order.label :deliver_id, "新しいお届け先"%><br>
+        <%= order.radio_button :deliver_id, :"新しいお届け先" %>
+        <%= order.label :deliver_id, "新しいお届け先", {value: "新しいお届け先"} %><br>
         <%= "郵便番号(ハイフンなし)" %><%= order.text_field :postal_code %><br>
         <%= "住所" %><%= order.text_field :street_address %><br>
         <%= "宛名" %><%= order.text_field :name %>
