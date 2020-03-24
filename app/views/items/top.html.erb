@@ -7,7 +7,7 @@
   </div>
 
   <div class="col-xs-9">
-  <!-- トップビジュアル -->
+    <!-- トップビジュアル -->
     <div class="main-visual">
       <p class="main-visual-text">
         ようこそ、NaganoCakeへ！<br>
@@ -17,12 +17,15 @@
       </p>
     </div>
 
-  <!-- 商品ID上から4件をオススメとして表示 -->
+    <!-- 商品ID上から4件をオススメとして表示 -->
+    <h3>オススメ商品</h3>
     <div class="item-picup">
       <% @items.each do |item| %>
+        <div class = "AA">
         <%= attachment_image_tag item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100' %>
         <%= link_to item.name, item_path(item) %>
         <%= number_with_delimiter(item.price) %>
+        </div>
       <% end %>
     </div>
   </div>

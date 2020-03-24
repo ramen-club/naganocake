@@ -1,4 +1,5 @@
-
+<div class="container">
+<div class="row">
 
   <div class="col-xs-3">
     <!-- ジャンル検索サイドバー -->
@@ -8,6 +9,8 @@
   <div class="col-xs-9">
     <!-- 商品一覧を表示 -->
     <h2><%= @info %>一覧(全<%= @counts %>件)</h2><br>
+
+    <div class="main clearfix">
       <% @items.each do |item| %>
       <div class = "AA">
         <p>
@@ -21,6 +24,9 @@
       </p>
       </div>
       <% end %>
-      <%= paginate(@items) %>
+    </div>
+    <%= paginate @items, class: "paginate" %>
   </div>
 
+</div>
+</div>
