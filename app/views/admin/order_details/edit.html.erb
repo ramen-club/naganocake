@@ -8,7 +8,6 @@
         </tr>
 	</thead>
 	<tbody>
-        <% @order_details.each do |order| %>
 		<tr>
 			<td>購入者</td>
 			<td>配送先</td>
@@ -19,9 +18,8 @@
 			<td><%= order.order.customer.family_name %><%= order.order.customer.first_name %></td>
 			<td><%= order.order.deliver.street_address %></td>
 			<td><%= order.order_status %></td>
-			<td><%= order.order.payment_method %></td>
+			<td><%= order.order.payment_method %><%= f.collection_select :order_id, Order.all, :id, :payment_method %></td>
 		</tr>
-		<% end %>
 	</tbody>
 </table>
 
@@ -39,7 +37,7 @@
         <% @order_details.each do |order| %>
 		<tr>
 			<td><%= order.item.name %></td>
-			<td> <%#= 税込価格 %> </td>
+			<td> <%= order.item.price %> </td>
 			<td><%= order.count %></td>
 			<td><%#= 小計 %></td>
 			<td><%= order.production_status %></td>
@@ -47,3 +45,7 @@
 		<% end %>
 	</tbody>
 </table>
+
+商品合計：
+送料：800円
+請求金額合計：
