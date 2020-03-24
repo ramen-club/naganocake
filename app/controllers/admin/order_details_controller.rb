@@ -3,13 +3,15 @@ class Admin::OrderDetailsController < ApplicationController
   before_action :if_not_admin
   before_action :set_order_detail, only: [:edit]
 
-  def edit
-    @order_detail = OrderDetail.find(params[:id])
+  def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
+    @total_price = @order_details.sum(:order_amount)
   end
 
   def update
     @order_detail = OrderDetail.find(params[:id])
-    @order_detail.update(order_details_params)
+    @order_detail.update(order_detail_params)
     redirect_to admin_order_details_path
   end
 
