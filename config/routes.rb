@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   # 商品テーブル
   root to: 'items#top'
   resources :items, only: [:index, :show], param: :id
+
+  # カートテーブル
   resources :carts, only: [:index,:destroy]
   post '/add_item' => 'carts#add_item'
   patch '/carts/:cart_item_id' => 'carts#update_item', as: 'update_item'
