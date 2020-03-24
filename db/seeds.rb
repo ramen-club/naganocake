@@ -35,7 +35,7 @@ Admin.create!(email: "admin@example.jp",
       customer_id: n + 1,
       name: "佐藤花子#{n + 1}",
       postal_code: "1001234",
-      street_address: "北海道札幌市#{n + 1}丁目"
+      street_address: "北海道札幌市北区#{n + 1}丁目"
     )
   end
 
@@ -55,7 +55,7 @@ Genre.create!(
       name: "test_item#{n + 1}",
       description: "テスト商品その#{n + 1}",
       genre_id: 1,
-      price: "1500"
+      price: "1000"
     )
   end
 
@@ -85,10 +85,12 @@ Genre.create!(
 10.times do |n|
   Order.create!(
     customer_id: 1,
-    charge: "3000",
+    payment_method: 0,
+    postage: "800",
+    charge: "3800",
     name: "田中二郎#{n + 1}",
     postal_code: "1009876",
-    street_address: "大阪府#{n + 1}",
+    street_address: "大阪府堺市中区#{n + 1}丁目",
     order_status: 0,
     deliver_id: 1
   )
@@ -99,8 +101,8 @@ end
   OrderDetail.create!(
     order_id: 1,
     item_id: n + 1,
-    count: n + 1,
+    count: 1,
     production_status: 0,
-    order_amount: "500"
+    order_amount: "1000"
   )
 end
