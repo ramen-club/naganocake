@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     if @order.save(address_params)
       redirect_to orders_thankyou
     else
