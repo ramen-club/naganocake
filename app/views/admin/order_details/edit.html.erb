@@ -1,0 +1,49 @@
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+        </tr>
+	</thead>
+	<tbody>
+        <% @order_details.each do |order| %>
+		<tr>
+			<td>購入者</td>
+			<td>配送先</td>
+			<td>支払方法</td>
+			<td>注文ステータス<%= order.order_status %></td>
+		</tr>
+        <tr>
+			<td><%= order.order.customer.family_name %><%= order.order.customer.first_name %></td>
+			<td><%= order.order.deliver.street_address %></td>
+			<td><%= order.order_status %></td>
+			<td><%= order.order.payment_method %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<table class="table table-hover table-inverse">
+	<thead>
+		<tr>
+			<th>商品名</th>
+			<th>単価（税込）</th>
+			<th>数量</th>
+			<th>小計</th>
+            <th>製作ステータス</th>
+        </tr>
+	</thead>
+	<tbody>
+        <% @order_details.each do |order| %>
+		<tr>
+			<td><%= order.item.name %></td>
+			<td> <%#= 税込価格 %> </td>
+			<td><%= order.count %></td>
+			<td><%#= 小計 %></td>
+			<td><%= order.production_status %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

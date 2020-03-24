@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_105341) do
     t.integer "item_id"
     t.integer "count"
     t.integer "order_amount"
-    t.integer "production_status"
+    t.integer "production_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_03_21_105341) do
     t.string "name"
     t.string "postal_code"
     t.string "street_address"
-    t.integer "order_status"
+    t.integer "order_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "deliver_id"

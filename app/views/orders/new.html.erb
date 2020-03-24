@@ -2,7 +2,7 @@
 <h3>注文情報入力</h3>
 
 
-<%= form_with(model: @order, url: order_path(orders_path)) do |order| %>
+<%= form_with model: @order, url: orders_path, method: :get do |order| %>
   
     <p><strong>支払方法</strong></p>
     
@@ -21,7 +21,7 @@
       <br>
         <%= radio_button_tag :sloppy_id, :order_deliver_id%>
         <%= order.label :deliver_id, "登録済住所から撰択"%>
-        <%= current_customer.delivers.select :{|address| [address.street_address, address.id]}%>
+        <%= order.collection_select :street_address, @address, :id, :street_address %>
       <br>
         <%= radio_button_tag :sloppy_id, :order %>
         <%= order.label :deliver_id, "新しいお届け先"%><br>
