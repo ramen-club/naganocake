@@ -55,7 +55,7 @@ Genre.create!(
       name: "test_item#{n + 1}",
       description: "テスト商品その#{n + 1}",
       genre_id: 1,
-      price: "1500"
+      price: "1500",
     )
   end
 
