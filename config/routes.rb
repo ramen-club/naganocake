@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   # カートテーブル
   resources :carts, only: [:index,:destroy]
-  post '/add_item' => 'carts#add_item'
+  post '/cart_item' => 'carts#create', as: 'cart_item'
   patch '/carts/:cart_item_id' => 'carts#update_item', as: 'update_item'
   delete '/delete_item/:cart_item_id' => 'carts#delete_item', as: 'delete_item'
 
