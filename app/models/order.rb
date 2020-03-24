@@ -25,6 +25,6 @@ class Order < ApplicationRecord
           price +=  order_detail.item.price * order_detail.count
         end
     end
-    # enum deliver_id: { Customer.deliver.id.all }
 
+    # enum deliver_id: { Customer.deliver.id.all }
 end

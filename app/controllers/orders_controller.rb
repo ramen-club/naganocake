@@ -36,8 +36,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if @order.save
-      redirect_to "thankyou"
+    binding.pry
+    if @order.save(address_params)
+      redirect_to orders_thankyou
     else
       @order = Order.new
       @deliver = Deliver.new
