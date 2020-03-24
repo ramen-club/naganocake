@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   # カートテーブル
   resources :carts, only: [:index,:destroy]
-  post '/add_item' => 'carts#add_item'
+  post '/cart_item' => 'carts#create', as: 'cart_item'
   patch '/carts/:cart_item_id' => 'carts#update_item', as: 'update_item'
   delete '/delete_item/:cart_item_id' => 'carts#delete_item', as: 'delete_item'
 
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   namespace :admin do
     #admin側のorderテーブル
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
-    resources :order_details, only: [:update, :index]
+    resources :order_details, only: [:update, :index, :show]
     resources :genres
     resources :items
   end
@@ -46,11 +46,6 @@ Rails.application.routes.draw do
   resources :orders
    get '/orders/thankyou' => 'orders#thankyou'
   #  get '/thankyou' => ''
-  resources :carts, only: [:show]
-   post '/add_item' => 'carts#add_item'
-   post '/update_item' => 'carts#update_item'
-   delete '/delete_item' => 'carts#delete_item'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
