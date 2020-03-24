@@ -18,6 +18,7 @@
       <nav>
         <ul class="nav navbar-nav navbar-right">
           <% if customer_signed_in? %>
+            <span>ようこそ  <%= current_customer.family_name %> <%= current_customer.first_name %> さん！</span>
             <%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-default test' %>
             <%= link_to '商品一覧', items_path, class: 'btn btn-default test' %>
             <%= link_to 'カート', carts_path, class: 'btn btn-default test' %>

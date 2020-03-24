@@ -15,12 +15,11 @@ class Order < ApplicationRecord
         発送済み: 4,
     }
 
-    def total_price
-        price = 0
-        order_details.each do |order_detail|
-          price =  order_detail.item.price * order_detail.count
-        end
-    end
+    enum payment_method: {
+        クレジットカード: 0,
+        銀行振込: 1
+    }
 
     # enum deliver_id: { Customer.deliver.id.all }
+
 end
