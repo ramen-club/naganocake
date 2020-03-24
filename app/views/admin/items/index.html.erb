@@ -1,3 +1,5 @@
+
+
 <h2>商品一覧画面</h2>
 
 <a class = "btn btn-info rounded-circle p-0", href = "/admin/items/new", role = "button">＋</a>
@@ -17,11 +19,12 @@
 		<tr>
 			<td><%= item.id %></td>
 			<td><%= link_to item.name, admin_item_path(item) %></td>
-			<td><%= number_with_delimiter(item.price) %></td>
+			<td><%= item.price %></td>      <%#= number_with_delimiter(item.price) と入れるとArgument Errorが出る  %>
 			<td><%= item.genre.name %></td>
 			<td><%= item.sale_status %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
+
 <%= paginate @items, class: "paginate" %>
