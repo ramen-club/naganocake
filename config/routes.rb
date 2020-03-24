@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    get 'order_details/show'
+  end
+  namespace :admin do
     get 'order_details/edit'
     get 'order_details/index'
   end
@@ -39,7 +42,7 @@ Rails.application.routes.draw do
   namespace :admin do
     #admin側のorderテーブル
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
-    resources :order_details, only: [:update, :index]
+    resources :order_details, only: [:update, :index, :show]
     resources :genres
     resources :items
   end
