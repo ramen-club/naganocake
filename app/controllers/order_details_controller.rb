@@ -8,6 +8,7 @@ class OrderDetailsController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+    @total_price = @order_details.sum(:order_amount)
   end
 
 end
