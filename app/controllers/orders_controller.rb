@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   def new
     @order = Order.new
     @deliver = Deliver.new
@@ -25,29 +26,27 @@ class OrdersController < ApplicationController
       @order.name = Order.name
       @order.postal_code = Order.postal_code
       @order.street_address = Order.street_address
-    else
     end
     
   end
 
   def show
-    @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    # @order = Order.find(params[:id])
+    # @order_details = @order.order_details
   end
 
   def create
-    # binding.pry
-    if @order.save(address_params)
-      redirect_to orders_thankyou
+    @order = Order.new(customer_params)
+    @order.customer_id = current_customer.id
+    if @order.save
+      # binding.pry
+      redirect_to orders_thankyou_path
     else
       @order = Order.new
       @deliver = Deliver.new
       @address = current_customer.delivers.all
       render :new
     end
-  end
-
-  def delete
   end
 
   def thankyou
@@ -60,5 +59,9 @@ class OrdersController < ApplicationController
 
     def address_params
       params.require(:order).permit(:name, :postal_code, :street_address )
+    end
+
+    def customer_params
+      params.require(:order).permit(:customer_id, :payment_method, :postage, :charge, :name, :postal_code, :street_address )
     end
 end
