@@ -1,20 +1,30 @@
-<table class="table table-hover table-inverse">
-	<thead>
-		<tr>
-			<th>購入者</th>
-			<th>配送先</th>
-			<th>支払方法</th>
-			<th>注文ステータス</th>
-        </tr>
-	</thead>
-	<tbody>
-        <tr>
-			<td><%= @order.customer.family_name %><%= @order.customer.first_name %></td>
-			<td><%= @order.street_address %></td>
-			<td><%= @order.order_status %></td>
-			<td><%= @order.payment_method %></td>
-		</tr>
-	</tbody>
+<h2>注文詳細画面</h2>
+
+<table>
+  <tr>
+    <th>購入者</th>
+    <th><%= @order.name %></th>
+  </tr>
+  <tr>
+    <th>配送先</th>
+    <th>
+    	<%= @order.postal_code %>
+        <%= @order.street_address %>
+    </th>
+  </tr>
+  <tr>
+    <th>支払方法</th>
+    <th><%= @order.payment_method %></th>
+  </tr>
+  <tr>
+    <th>注文ステータス</th>
+    <th>
+    	<%= form_with(model: @order) do |f| %>
+        	<%= f.select :order_status, Order.order_statuses.keys, {} %>
+        	<%= f.submit "更新"%>
+        <% end %>
+    </th>
+  </tr>
 </table>
 
 <table class="table table-hover table-inverse">
@@ -34,12 +44,16 @@
     	 	<td><%= number_with_delimiter(order_details.item.price) %></td>
     	 	<td><%= order_details.count %></td>
     	 	<td><%= number_with_delimiter(order_details.order_amount) %></td>
-			<td><%= order_details.production_status %></td>
+			<td>
+				<%= order_details.collection_select :production_status, @production_status, :id, :production_status %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 
-商品合計：<%= number_with_delimiter(@total_price) %>
-送料：<%= number_with_delimiter(@order.postage) %>
-請求金額合計：<%= number_with_delimiter(@order.charge) %>
+<div class="total_price">
+<p>商品合計：<%= number_with_delimiter(@total_price) %></p>
+<p>送料：<%= number_with_delimiter(@order.postage) %></p>
+<p>請求金額合計：<%= number_with_delimiter(@order.charge) %></p>
+</div>
