@@ -7,6 +7,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order = Order.find(params[:id])
     @order_details = @order.order_details
     @total_price = @order_details.sum(:order_amount)
+    @production_status = @order_details.production_status
   end
   
   def update
@@ -17,6 +18,7 @@ class Admin::OrderDetailsController < ApplicationController
   
   def index
     @order_details = OrderDetail.page(params[:page]).reverse_order
+    @count_total = OrderDetail.sum(:count)
   end
 
   private
@@ -30,5 +32,6 @@ class Admin::OrderDetailsController < ApplicationController
 
   def set_order_detail
     @order_detail = OrderDetail.find(params[:id])
+    @order = Order.find(params[:id])
   end
 end

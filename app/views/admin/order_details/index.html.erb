@@ -14,7 +14,7 @@
 		<tr>
 			<td><%= link_to order.created_at.strftime('%Y/%m/%d'), admin_order_detail_path(order) %></td>
 			<td><%= order.order.customer.family_name %><%= order.order.customer.first_name %></td>
-			<td><%= order.count %></td>
+			<td><%= @count_total %></td>
 			<td><%= order.order.order_status %></td>
 		</tr>
 		<% end %>
