@@ -29,11 +29,10 @@ class ItemsController < ApplicationController
     end
     @counts = @items.count
   end
-
   def show
     @genres = Genre.all
     @item = Item.find(params[:id])
-    @cart_item = CartItem.new(item_id: @item.id)
+    @cart_item = CartItem.new
   end
 
 end

@@ -8,12 +8,13 @@ class CartsController < ApplicationController
        @cart_items = current_customer.relations
        @cart_item = CartItem.new
     end
-
     def create
-        @cart_item = CartItem.new(params[:cart_item_id])
+        @cart_item = CartItem.new(cart_item_params)
+        @cart_item.cart_id = current_customer.cart.id
         @cart_item.save
         redirect_to carts_path
     end
+
 
     def update_item
         @cart_item = CartItem.find(params[:cart_item_id])
@@ -39,7 +40,7 @@ class CartsController < ApplicationController
     private
 
     def cart_item_params
-      params.require(:cart_item).permit(:count)
+      params.require(:cart_item).permit(:count, :item_id)
     end
 
     def setup_cart_item!
