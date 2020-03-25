@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
   devise_scope :admin do
-    get '/admins/top' => 'admins/registrations#top'
+    # get '/admins/top' => 'admins/registrations#top'
+    get '/admin/orders/top' => 'admin/orders#top'
   end
 
   # 顧客テーブル

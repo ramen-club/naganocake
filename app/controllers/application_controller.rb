@@ -5,8 +5,10 @@ class ApplicationController < ActionController::Base
   # ログイン後に遷移するページを顧客と管理者で分ける
   def after_sign_in_path_for(resource)
   	case resource
+    # 管理者ログイン時
   	when Admin
-  	  admins_top_path
+  	  admin_orders_top_path
+    # 顧客ログイン時
   	when Customer
       current_cart
   	  root_path
