@@ -30,5 +30,6 @@ class Admin::OrderDetailsController < ApplicationController
 
   def set_order_detail
     @order_detail = OrderDetail.find(params[:id])
+    @order = Order.find(params[:id])
   end
 end
