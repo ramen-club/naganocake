@@ -14,6 +14,15 @@ class ApplicationController < ActionController::Base
   	  root_path
   	end
   end
+
+  # 管理者ログアウト後の遷移先
+  def after_sign_out_path_for(resource_or_scope)
+    if resource_or_scope == :admin
+      new_admin_session_path
+    else
+      new_customer_session_path
+    end
+  end
   # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
   def current_cart
     logger.debug(session[:cart_id])
