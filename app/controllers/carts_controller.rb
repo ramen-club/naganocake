@@ -1,7 +1,9 @@
 class CartsController < ApplicationController
+
+    # 会員ログイン制限
+    before_action :authenticate_customer!
+
     before_action :setup_cart_item!, only: [:add_item, :update_item]
-    def show
-    end
 
     def index
        @carts = current_customer.cart

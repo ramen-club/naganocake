@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
 
+  # 会員ログイン制限
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
     @deliver = Deliver.new

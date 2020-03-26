@@ -60,26 +60,26 @@ Genre.create!(
   end
 
 # カートのテストデータ2件
-2.times do |n|
-    Cart.create!(
-      customer_id: n + 1
-    )
-  end
+# 2.times do |n|
+#     Cart.create!(
+#       customer_id: n + 1
+#     )
+#   end
 
 # カート内商品のテストデータ10件
-10.times do |n|
-    CartItem.create!(
-     item_id: n + 1,
-      cart_id: 1,
-      count: 2,
-    )
-  end
-  10.times do |n|
-    CartItem.create!(
-     item_id: n + 1,
-      cart_id: 2
-    )
-  end
+# 10.times do |n|
+#     CartItem.create!(
+#      item_id: n + 1,
+#       cart_id: 1,
+#       count: 2,
+#     )
+#   end
+#   10.times do |n|
+#     CartItem.create!(
+#      item_id: n + 1,
+#       cart_id: 2
+#     )
+#   end
 
 # 注文のテストデータ10件
 10.times do |n|

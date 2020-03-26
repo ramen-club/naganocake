@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_cart, :logged_in?
 
@@ -23,7 +24,7 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-  # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
+
   def current_cart
     logger.debug(session[:cart_id])
     if current_customer.cart.nil?
@@ -32,6 +33,7 @@ class ApplicationController < ActionController::Base
     end
     @cart = current_customer.cart
   end
+
 
   protected
   # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載

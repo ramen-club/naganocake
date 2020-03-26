@@ -1,4 +1,8 @@
 class Admin::GenresController < ApplicationController
+
+  # 管理者ログイン制限
+  before_action :authenticate_admin!
+
   def new
     @genre = Genre.new
 

@@ -1,5 +1,8 @@
 class OrderDetailsController < ApplicationController
 
+	# 会員ログイン制限
+	before_action :authenticate_customer!
+
   def index
     @customer = current_customer
     @orders = @customer.orders

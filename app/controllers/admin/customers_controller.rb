@@ -1,6 +1,7 @@
 class Admin::CustomersController < ApplicationController
 
-	before_action :admin_admin
+	# 管理者ログイン制限
+	before_action :authenticate_admin!
 
 	def index
 	  @customers = Customer.page(params[:page]).reverse_order
@@ -22,9 +23,6 @@ class Admin::CustomersController < ApplicationController
 
 
 	private
-	  def admin_admin
-	  	redirect_to(root_url) unless admin_signed_in?
-	  end
 
     def customer_params
       params.require(:customer).permit(:family_name, :first_name, :family_kana, :first_kana, :email, :postal_code, :street_address, :tel_number, :is_active)

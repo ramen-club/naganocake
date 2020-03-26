@@ -1,7 +1,10 @@
 class Admin::OrdersController < ApplicationController
 
-    # before_action :if_not_admin　あとで復活
-    before_action :set_order_detail, only: [:edit]
+  # 管理者ログイン制限
+  before_action :authenticate_admin!
+
+  # before_action :if_not_admin
+  before_action :set_order_detail, only: [:edit]
 
   def top
     @counts = Order.count
