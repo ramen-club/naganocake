@@ -12,6 +12,7 @@
 
     <div class="main clearfix">
       <% @items.each do |item| %>
+      <% if item.genre.is_active == "有効" %>
       <div class = "AA">
         <p>
         <%= attachment_image_tag item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100' %>
@@ -23,6 +24,7 @@
         <%= number_with_delimiter(item.price) %>
       </p>
       </div>
+      <% end %>
       <% end %>
     </div>
     <%= paginate @items, class: "paginate" %>
