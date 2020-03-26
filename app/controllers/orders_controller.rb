@@ -37,11 +37,18 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(customer_params)
-    # 3/26追記↓
-    @order_details = OrderDetails.new(detail_params)
     @order.customer_id = current_customer.id
     if @order.save
-      # binding.pry
+       @cart_items = current_customer.cart.cart_items
+       @cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.count = cart_item.count
+        order_detail.order_amount = cart_item.item.price * cart_item.count
+        order_detail.order_id = @order.id
+        order_detail.item_id = cart_item.item_id
+        order_detail.save
+      end
+      @cart_items.destroy_all
       redirect_to orders_thankyou_path
     else
       @order = Order.new
