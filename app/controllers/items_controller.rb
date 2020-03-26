@@ -3,11 +3,13 @@ class ItemsController < ApplicationController
   PER = 8
 
   def top
-    @genres = Genre.all
+    # ジャンルが"有効"な場合
+    @genres = Genre.where(is_active: 1)
   	if customer_signed_in?
   	@customer = Customer.find(current_customer.id)
     end
-    @genres = Genre.all
+    # ジャンルが"有効"な場合
+    @genres = Genre.where(is_active: 1)
     @items = Item.limit(4)
   end
 
@@ -15,6 +17,7 @@ class ItemsController < ApplicationController
     @carts = Cart.all
     @items = Item.all
     # ジャンル検索機能↓
+    # ジャンルが"有効"な場合
     @genres = Genre.all
     # urlにgenre_id(params)がある場合
     if params[:genre_id]
@@ -30,7 +33,7 @@ class ItemsController < ApplicationController
     @counts = @items.count
   end
   def show
-    @genres = Genre.all
+    @genres = Genre.where(is_active: 1)
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
   end

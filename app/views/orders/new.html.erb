@@ -22,10 +22,10 @@
         <%= order.collection_select :select_address, @address, :id, :street_address %>
       <br>
         <%= radio_button_tag :deliver_address, "3" %>
-        <%= label_tag :deliver_address, "新しいお届け先", {value: :"3"}%><br>
-        <%= "郵便番号(ハイフンなし)" %>　<%= order.text_field :postal_code %><br>
-        <%= "住所" %>　<%= order.text_field :street_address %><br>
-        <%= "宛名" %>　<%= order.text_field :name %>
+        <%= label_tag :deliver_address, "新しいお届け先", {value: :"3"}%>
+        <%= "郵便番号(ハイフンなし)" %><%= text_field_tag 'deliver[postal_code]' %><br>
+        <%= "住所" %><%= text_field_tag 'deliver[street_address]' %><br>
+        <%= "宛名" %><%= text_field_tag 'deliver[name]' %>
       <br>
         <%= order.submit "確認画面へ進む", class: 'btn btn-primary btn-lg' %>
 <% end %>
