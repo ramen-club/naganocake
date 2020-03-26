@@ -1,10 +1,13 @@
 class DeliversController < ApplicationController
 
-  def index
-  	@customer = Customer.find(current_customer.id)
-  	@deliver = Deliver.new
-  	@delivers = Deliver.all
-  end
+  # 会員ログイン制限
+  before_action :authenticate_customer!
+
+  # def index
+  # 	@customer = Customer.find(current_customer.id)
+  # 	@deliver = Deliver.new
+  # 	@delivers = Deliver.all
+  # end
 
   def show
     @customer = Customer.find(current_customer.id)

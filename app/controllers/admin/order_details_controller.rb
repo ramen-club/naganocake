@@ -1,6 +1,9 @@
 class Admin::OrderDetailsController < ApplicationController
 
-  before_action :if_not_admin
+  # 管理者ログイン制限
+  before_action :authenticate_admin!
+
+  # before_action :if_not_admin
   before_action :set_order_detail, only: [:edit]
 
   # def show

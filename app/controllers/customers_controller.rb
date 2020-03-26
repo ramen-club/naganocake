@@ -1,7 +1,9 @@
 class CustomersController < ApplicationController
 
-  before_action :screen_customer, only: [:show, :edit, :update]
+  # 会員ログイン制限
+  before_action :authenticate_customer!
 
+  before_action :screen_customer, only: [:show, :edit, :update]
 
   def show
   	@customer = Customer.find(params[:id])

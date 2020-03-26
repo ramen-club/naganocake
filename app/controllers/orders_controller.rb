@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
 
+  # 会員ログイン制限
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
     @deliver = Deliver.new
     @address = current_customer.delivers.all
   end
-  
+
   def index
     # @items = current_customer.cart.cart_item
     customer = current_customer
