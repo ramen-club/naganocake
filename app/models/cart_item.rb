@@ -10,8 +10,8 @@ class CartItem < ApplicationRecord
 		return price
 	end
 
-	def subtotal
-		item.price * count
+	def subtotal_price
+		item.price.to_i * count.to_i
 	end
 
 end
