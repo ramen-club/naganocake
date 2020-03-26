@@ -20,7 +20,7 @@
         <td><%= number_with_delimiter(item.item.price) %></td>
         <td><%= item.count %></td>
             <% a = 0 %>
-            <% a = item.item.price * item.count %>
+            <% a += item.item.price * item.count %>
             <td><%= a %></td><%#itemの小計%>
       </tr>
       <% end %>
@@ -52,6 +52,8 @@
 <%= form_with(model: @order, url:orders_path, method: :post, local: true) do |order| %>
 
   <%#binding.pry%>
+  <%= order.hidden_field :postage, :value => @postage%>
+  <%= order.hidden_field :charge, :value => @price%>
   <%= order.hidden_field :payment_method, :value => @order.payment_method %>
   <%= order.hidden_field :name, :value => @order.name %> 
   <%= order.hidden_field :postal_code, :value => @order.postal_code %>

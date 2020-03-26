@@ -10,4 +10,10 @@ class OrderDetail < ApplicationRecord
         製作完了: 3
     }
 
+    def total_price
+        price = 0
+        order_details.each do |order_detail|
+          price +=  order_detail.item.price * order_detail.count
+        end
+    end
 end

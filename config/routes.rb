@@ -34,6 +34,12 @@ Rails.application.routes.draw do
   # 配送先テーブル
   resources :delivers
 
+  # 注文テーブル
+# resources :orders
+get '/orders/thankyou' => 'orders#thankyou'
+resources :orders, only: [:new, :index, :create]
+
+
   namespace :admin do
     #admin側のorderテーブル
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
@@ -41,14 +47,12 @@ Rails.application.routes.draw do
     resources :genres
     resources :items
   end
+
   # 注文テーブル
-
-  # resources :orders
+  get '/orders/thankyou' => 'orders#thankyou'
   resources :orders
-   get '/orders/thankyou' => 'orders#thankyou'
-  #  get '/thankyou' => ''
-
-
+  
+  
   # 注文明細テーブル
   resources :order_details, only: [:index, :show]
 
