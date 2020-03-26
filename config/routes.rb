@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
   devise_scope :admin do
-    get '/admins/top' => 'admins/registrations#top'
+    # get '/admins/top' => 'admins/registrations#top'
+    get '/admin/orders/top' => 'admin/orders#top'
   end
 
   # 顧客テーブル
@@ -47,6 +48,11 @@ resources :orders, only: [:new, :index, :create]
     resources :items
   end
 
+  # 注文テーブル
+  get '/orders/thankyou' => 'orders#thankyou'
+  resources :orders
+  
+  
   # 注文明細テーブル
   resources :order_details, only: [:index, :show]
 
@@ -55,4 +61,8 @@ resources :orders, only: [:new, :index, :create]
     get 'order_details/index'
   end
 
+  # 検索用
+  get '/search', to: 'search#search'
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

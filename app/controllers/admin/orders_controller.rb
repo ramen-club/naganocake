@@ -3,6 +3,10 @@ class Admin::OrdersController < ApplicationController
     before_action :if_not_admin
     before_action :set_order_detail, only: [:edit]
 
+  def top
+    @counts = Order.count
+  end
+
   def index
     @orders = Order.all
     @count_total = OrderDetail.sum(:count)

@@ -5,12 +5,23 @@ class ApplicationController < ActionController::Base
   # ログイン後に遷移するページを顧客と管理者で分ける
   def after_sign_in_path_for(resource)
   	case resource
+    # 管理者ログイン時
   	when Admin
-  	  admins_top_path
+  	  admin_orders_top_path
+    # 顧客ログイン時
   	when Customer
       current_cart
   	  root_path
   	end
+  end
+
+  # 管理者ログアウト後の遷移先
+  def after_sign_out_path_for(resource_or_scope)
+    if resource_or_scope == :admin
+      new_admin_session_path
+    else
+      new_customer_session_path
+    end
   end
   # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載
   def current_cart

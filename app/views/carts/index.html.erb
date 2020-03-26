@@ -15,7 +15,8 @@
   <tbody>
     <% @cart_items.each do |cart_item| %>
     <tr>
-      <th><%= cart_item.item.name %></th>
+      <th><%= attachment_image_tag(cart_item.item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'100x50') %>
+        <%= cart_item.item.name %></th>
       <th><%= cart_item.item.price %></th>
       <th><%= form_for cart_item, url: update_item_path(cart_item) do |f| %>
         <%= f.number_field :count, min: 0, max: 100 %>
