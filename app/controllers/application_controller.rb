@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     if resource_or_scope == :admin
       new_admin_session_path
     else
-      new_customer_session_path
+      root_path
     end
   end
   # 顧客の新規登録の際にデータ保存する為に以下のカラムを記載

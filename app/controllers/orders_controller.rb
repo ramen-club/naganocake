@@ -45,7 +45,16 @@ class OrdersController < ApplicationController
     @order = Order.new(customer_params)
     @order.customer_id = current_customer.id
     if @order.save
-      # binding.pry
+       @cart_items = current_customer.cart.cart_items
+       @cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.count = cart_item.count
+        order_detail.order_amount = cart_item.item.price * cart_item.count
+        order_detail.order_id = @order.id
+        order_detail.item_id = cart_item.item_id
+        order_detail.save
+      end
+      @cart_items.destroy_all
       redirect_to orders_thankyou_path
     else
       @order = Order.new
@@ -70,4 +79,9 @@ class OrdersController < ApplicationController
     def customer_params
       params.require(:order).permit(:customer_id, :payment_method, :postage, :charge, :name, :postal_code, :street_address )
     end
+
+    def detail_params
+      params.require(:order_detail).permit(:order_id, :item_id, :count, :order_amount, :production_status)
+    end
+
 end

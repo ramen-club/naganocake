@@ -92,7 +92,24 @@ span {
 	border: dotted 3px gold;
 	padding: 10px;
 }
+
 /*管理者側の商品一覧画面*/
 .rounded-circle {
 	float: right;
+}
+
+/*購入完了画面*/
+.thankyou-visual {
+  width: 100%;
+  height: 750px;
+  background: image-url("thankyou.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.thankyou-text {
+	width: 100%;
+	font-size: 40px;
+	text-align: center;
+	padding-top: 350px;
 }

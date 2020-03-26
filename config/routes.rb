@@ -43,7 +43,7 @@ resources :orders, only: [:new, :index, :create]
   namespace :admin do
     #admin側のorderテーブル
     resources :orders, only: [:update, :index, :show] #index,showに遷移させたい為追加しました。
-    resources :order_details, only: [:update, :index, :show]
+    resources :order_details, only: [:update]
     resources :genres
     resources :items
   end
