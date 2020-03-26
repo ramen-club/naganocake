@@ -1,6 +1,6 @@
-<br>
-<h3>注文情報入力</h3>
+<h2>注文情報入力</h2>
 
+<!-- カートに入れた商品一覧 -->
 <table class = "table" >
   <thead>
     <tr>
@@ -10,51 +10,53 @@
       <th>小計</th>
     </tr>
   </thead>
-    <tbody>
+  <tbody>
     <% @cart_items.each do |item| %>
       <tr>
         <td>
-          <%= attachment_image_tag item.item, :image, :fill, 50, 50, fallback: "no_image.jpg", size:'150×100' %>
+          <%= attachment_image_tag(item.item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'100x70') %>
           <%= item.item.name %>
         </td>
         <td><%= number_with_delimiter(item.item.price) %></td>
         <td><%= item.count %></td>
             <% a = 0 %>
-            <% a = item.item.price * item.count %>
-            <td><%= a %></td><%#itemの小計%>
+            <% a += item.item.price * item.count %>
+            <td><%= number_with_delimiter(a) %></td><%#itemの小計%>
       </tr>
-      <% end %>
-    </tbody>
-</table>    
+    <% end %>
+  </tbody>
+</table>
+
+<!-- 金額欄 -->
 <table class = "table" >
-  <thead>
     <tr>
       <th>送料</th>
-      <th><%= @postage %></th>
+      <td><%= number_with_delimiter(@postage) %></td>
     </tr>
     <tr>
       <th>商品合計</th>
-      <th><%= @price %></th>
+      <td><%= number_with_delimiter(@price) %></td>
     </tr>
     <tr>
       <th>請求金額</th>
-      <th><%= @price += @postage %></th>
+      <td><strong><%= number_with_delimiter(@price += @postage) %></strong></td>
     </tr>
-  </thead>
 </table>
-<div>支払い方法</div>
+
+<h4>支払い方法</h4>
 <%= @order.payment_method %>
-<div>お届け先</div>
+
+<h4>お届け先</h4>
+<%= "〒" + @order.postal_code %>
+<%= @order.street_address %><br>
 <%= @order.name %>
-<%= @order.postal_code %>
-<%= @order.street_address %>
 
 <%= form_with(model: @order, url:orders_path, method: :post, local: true) do |order| %>
-
-  <%#binding.pry%>
+  <%= order.hidden_field :postage, :value => @postage%>
+  <%= order.hidden_field :charge, :value => @price%>
   <%= order.hidden_field :payment_method, :value => @order.payment_method %>
-  <%= order.hidden_field :name, :value => @order.name %> 
+  <%= order.hidden_field :name, :value => @order.name %>
   <%= order.hidden_field :postal_code, :value => @order.postal_code %>
   <%= order.hidden_field :street_address, :value => @order.street_address %>
-  <%= order.submit %>
+  <%= order.submit "購入を確定する", class: 'btn btn-success btn-lg' %>
 <% end %>

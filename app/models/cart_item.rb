@@ -1,7 +1,7 @@
 class CartItem < ApplicationRecord
 	belongs_to :item
     belongs_to :cart
-	  
+	  #orderで計算するので残しておいてください。
   	def self.subtotal(cart_items)
 		price = 0
 		cart_items.each do |cart_item|
@@ -10,8 +10,8 @@ class CartItem < ApplicationRecord
 		return price
 	end
 
-	def subtotal
-		item.price * count
+	def subtotal_price
+		item.price.to_i * count.to_i
 	end
 
 end

@@ -19,7 +19,7 @@
   <tr>
     <th>注文ステータス</th>
     <th>
-    	<%= form_with(model: @order) do |f| %>
+    	<%= form_with(model: @order, url: admin_order_path, method: :patch ) do |f| %>
         	<%= f.select :order_status, Order.order_statuses.keys, {} %>
         	<%= f.submit "更新"%>
         <% end %>
@@ -45,7 +45,12 @@
     	 	<td><%= order_details.count %></td>
     	 	<td><%= number_with_delimiter(order_details.order_amount) %></td>
 			<td>
-				<%= order_details.collection_select :production_status, @production_status, :id, :production_status %>
+        <%#binding.pry%>
+        <%= form_with(model: order_details, url: admin_order_detail_path, method: :patch) do |f| %>
+        <%= order_details.production_status %>
+				<%= f.select :production_status, OrderDetail.production_statuses.keys.to_a, {:selected => order_details.production_status} %>
+        <%= f.submit "更新" %>
+        <% end %>
 			</td>
 		</tr>
 		<% end %>
