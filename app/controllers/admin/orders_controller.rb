@@ -43,7 +43,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def if_not_admin
-    redirect_to root_path unless current_customer.admin?
+    redirect_to root_path unless current_admin.admin_flg?
   end
   
   # def list_params
