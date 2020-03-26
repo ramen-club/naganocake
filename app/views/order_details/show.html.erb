@@ -2,7 +2,7 @@
 
 <div class="order-info">
   <h4>注文情報</h4>
-  <table class="table", border="1">
+  <table class="table">
 	<tr>
     	<th>注文日</th>
     	<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
@@ -28,7 +28,7 @@
 
 <div class="order-charge">
   <h4>請求情報</h4>
-  <table class="table", border="1">
+  <table class="table">
 	<tr>
     	<th>商品合計</th>
     	<td><%= number_with_delimiter(@total_price) %></td>
@@ -46,7 +46,7 @@
 
 <div class="order-item">
   <h4>注文内容</h4>
-  <table class="table", border="1">
+  <table class="table">
 	<thead>
     <tr>
       <th>商品</th>

@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
       @order.postal_code = Order.postal_code
       @order.street_address = Order.street_address
     end
-    
+
   end
 
   def show
@@ -37,6 +37,8 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(customer_params)
+    # 3/26追記↓
+    @order_details = OrderDetails.new(detail_params)
     @order.customer_id = current_customer.id
     if @order.save
       # binding.pry
@@ -64,4 +66,9 @@ class OrdersController < ApplicationController
     def customer_params
       params.require(:order).permit(:customer_id, :payment_method, :postage, :charge, :name, :postal_code, :street_address )
     end
+
+    def detail_params
+      params.require(:order_detail).permit(:order_id, :item_id, :count, :order_amount, :production_status)
+    end
+
 end
