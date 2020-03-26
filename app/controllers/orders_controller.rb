@@ -36,8 +36,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
-    if @order.save(address_params)
+    # binding.pry
+     @cart = Cart.new(current_customer_params[:cart])
+     @cart_item.order_id = current_customer.order.id
+    if @order.save
+      # (address_params)
       redirect_to orders_thankyou
     else
       @order = Order.new

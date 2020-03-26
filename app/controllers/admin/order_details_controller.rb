@@ -7,7 +7,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order = Order.find(params[:id])
     @order_details = @order.order_details
     @total_price = @order_details.sum(:order_amount)
-    @production_status = @order_details.production_status
+    # @production_status = @order_details.production_status
   end
 
   def update
