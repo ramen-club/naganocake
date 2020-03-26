@@ -25,7 +25,7 @@
       </tr>
       <% end %>
     </tbody>
-</table>    
+</table>
 <table class = "table" >
   <thead>
     <tr>
@@ -55,7 +55,7 @@
   <%= order.hidden_field :postage, :value => @postage%>
   <%= order.hidden_field :charge, :value => @price%>
   <%= order.hidden_field :payment_method, :value => @order.payment_method %>
-  <%= order.hidden_field :name, :value => @order.name %> 
+  <%= order.hidden_field :name, :value => @order.name %>
   <%= order.hidden_field :postal_code, :value => @order.postal_code %>
   <%= order.hidden_field :street_address, :value => @order.street_address %>
   <%= order.submit %>

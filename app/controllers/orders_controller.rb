@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
     @deliver = Deliver.new
     @address = current_customer.delivers.all
   end
-  
+
   def index
     # @items = current_customer.cart.cart_item
     customer = current_customer
@@ -23,11 +23,17 @@ class OrdersController < ApplicationController
       @order.postal_code = Deliver.find(params[:order][:select_address].to_i).postal_code
       @order.street_address = Deliver.find(params[:order][:select_address].to_i).street_address
     elsif params[:deliver_address] == "3"
-      @order.name = Order.name
-      @order.postal_code = Order.postal_code
-      @order.street_address = Order.street_address
+      # 住所の登録を行う
+      @deliver = Deliver.new(address_params)
+      @deliver.customer_id = current_customer.id
+      @deliver.save
+
+      # 登録された住所を、オーダーモデルのカラムに格納する
+      @order.name = @deliver.name
+      @order.postal_code = @deliver.postal_code
+      @order.street_address =  @deliver.street_address
     end
-    
+
   end
 
   def show
@@ -58,7 +64,7 @@ class OrdersController < ApplicationController
     end
 
     def address_params
-      params.require(:order).permit(:name, :postal_code, :street_address )
+      params.require(:deliver).permit(:name, :postal_code, :street_address )
     end
 
     def customer_params
