@@ -20,14 +20,17 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    if @order = Order.find(params[:id])
-       @order.update(order_status_params)
-       redirect_back(fallback_location: root_path)
-    elsif
-      @order_detail = OrderDetail.find(params[:id])
-      @order_detail.update(order_detail_params)
-      redirect_back(fallback_location: root_path)
+    # binding.pry
+    @order = Order.find(params[:id])
+    @order.update(order_status_params)
+
+    if @order.order_status == "入金確認"
+      @order.order_details.each do |order_detail|
+        order_detail.update(production_status: "製作待ち")
+      end
     end
+
+    redirect_back(fallback_location: root_path)
   end
 
     private
