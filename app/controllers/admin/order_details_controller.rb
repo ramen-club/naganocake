@@ -15,19 +15,18 @@ class Admin::OrderDetailsController < ApplicationController
   
   def update
     @order_detail = OrderDetail.find(params[:id])
+    @order = Order.find(params[:id])
     @order_detail.update(order_detail_params)
 
-    if @order_detail.production_status == "制作中"
-      @order_detail.order.each do |order|
-        order.update(order_status: "制作中")
-      end
-    elsif @order_detail.production_status == "製作完了"
-      @order_detail.order.each do |order|
-        order.update(order_status: "発送準備中")
-      end
+    binding.pry
+    if @order.order_details.exists?(production_status: "製作中") 
+      @order.update(order_status: "製作中")
+    else
+      detail = @order_detail.select(:production_status).distinct
+      detail == 1 && @order_detail.production_status == "製作完了"
+      @order.update(order_status: "発送準備中")
     end
-    
-    redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path)
   end
 
   private
