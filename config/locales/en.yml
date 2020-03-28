@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+# 退会済み会員がログイン実行時に出すエラーメッセージの日本語版
+en:
+  devise:
+    failure:
+      deleted_account: "このユーザーは退会済みのためログインできません。"

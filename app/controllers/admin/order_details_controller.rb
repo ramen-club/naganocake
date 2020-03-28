@@ -5,24 +5,17 @@ class Admin::OrderDetailsController < ApplicationController
 
   # before_action :if_not_admin
   before_action :set_order_detail, only: [:edit]
-
-  def show
-    @order = Order.find(params[:id])
-    @order_details = @order.order_details
-    @total_price = @order_details.sum(:order_amount)
-    # @production_status = @order_details.production_status
-  end
   
   def update
     @order_detail = OrderDetail.find(params[:id])
-    @order = Order.find(params[:id])
+    @order = @order_detail.order
     @order_detail.update(order_detail_params)
-
-    binding.pry
+    
     if @order.order_details.exists?(production_status: "製作中") 
       @order.update(order_status: "製作中")
     else
-      detail = @order_detail.select(:production_status).distinct
+      # binding.pry
+      detail = @order.order_details.select(:production_status).distinct
       detail == 1 && @order_detail.production_status == "製作完了"
       @order.update(order_status: "発送準備中")
     end

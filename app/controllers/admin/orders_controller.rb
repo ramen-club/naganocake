@@ -11,9 +11,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
-    @order_details = OrderDetail.page(params[:page]).reverse_order
-    @count_total = OrderDetail.sum(:count)
+    @orders = Order.page(params[:page]).reverse_order
   end
 
   def show
@@ -23,10 +21,9 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    # binding.pry
     @order = Order.find(params[:id])
     @order.update(order_status_params)
-
+    
     if @order.order_status == "入金確認"
       @order.order_details.each do |order_detail|
         order_detail.update(production_status: "製作待ち")
@@ -48,10 +45,6 @@ class Admin::OrdersController < ApplicationController
   def if_not_admin
     redirect_to root_path unless current_admin.admin_flg?
   end
-  
-  # def list_params
-  #   params.require(:order).permit(:sell_status)
-  # end
 
   def set_order_detail
     @order_detail = OrderDetail.find(params[:id])
