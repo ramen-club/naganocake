@@ -4,9 +4,9 @@
   <title>Naganocake</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <!-- <link rel="stylesheet" href="css/skippr.css"> 　　
-　  <link rel="stylesheet" href="stylesheets/application.css">  -->
-  
+  <link rel="stylesheet" href="css/skippr.css"> 　　
+　  <link rel="stylesheet" href="stylesheets/application.css"> 
+<link rel="stylesheet" href="stylesheets/skippr.css"> 　　
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -57,6 +57,9 @@
     <div class="container">
       <div class="row">
         <%= yield %>
+        <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/skippr.min.js"></script>
+    <script src="javascripts/application.js"></script>
       </div>
     </div>
   </div>

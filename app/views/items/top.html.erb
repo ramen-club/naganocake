@@ -1,42 +1,44 @@
-<% if flash[:notice] %>
-  <script>
-    alert('ログインして！！！！');
-  </script>
-<% end %>
-
+    <% if flash[:notice] %>
+    <script>
+      alert('ログインして！！！！');
+    </script>
+    <% end %>
 <div class="container">
-<div class="row">
+  <div class="row">
 
-  <div class="col-xs-3">
-    <!-- ジャンル検索サイドバー -->
-    <%= render 'genre_search', genres: @genres %>
-  </div>
-
-  <div class="col-xs-9">
-    <!-- トップビジュアル -->
-    <div class="main-visual">
-          <div class="theTarget">
-            <div style="background-image: url(img/cake.jpg)"></div>
-            <div style="background-image: url(img/candy.jpg)"></div>
-            <div style="background-image: url(img/cooky.jpg)"></div>
-            <div style="background-image: url(img/pudding.jpg)"></div>
-        </div>
+    <div class="col-xs-3">
+      <!-- ジャンル検索サイドバー -->
+      <%= render 'genre_search', genres: @genres %>
     </div>
 
-    <!-- 商品ID上から4件をオススメとして表示 -->
-    <h3>オススメ商品</h3>
-    <div class="item-picup">
-      <% @items.each do |item| %>
+    <div class="col-xs-9">
+      <!-- トップビジュアル -->
+      <div class="main-visual-text">
+        <div class="theTarget">
+          <div style="background-image: url(images/cake.jpg)">ようこそ、NaganoCakeへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。</div>
+          <div style="background-image: url(images/candy.jpg)"></div>
+          <div style="background-image: url(images/cooky.jpg)"></div>
+          <div style="background-image: url(images/pudding.jpg)"></div>
+        </div>
+      </div>
+
+      <!-- 商品ID上から4件をオススメとして表示 -->
+      <h3>オススメ商品</h3>
+      <div class="item-picup">
+        <% @items.each do |item| %>
         <div class = "AA">
-        <%= link_to(item) do %>
+          <%= link_to(item) do %>
           <%= attachment_image_tag(item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100') %>
-        <% end %>
-        <%= item.name %>
-        <%= number_with_delimiter(item.price) %>
+          <% end %>
+          <%= item.name %>
+          <%= number_with_delimiter(item.price) %>
         </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
+
   </div>
-    <script src="javascripts/skippr.min.js"></script>
-</div>
 </div>
