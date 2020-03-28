@@ -3,12 +3,15 @@
 <table>
   <tr>
     <th>購入者</th>
-    <th><%= @order.name %></th>
+    <th><%= @order.customer.family_name %><%= @order.customer.first_name %></th>
   </tr>
   <tr>
     <th>配送先</th>
-    <th><%= @order.postal_code %>
-        <%= @order.street_address %></th>
+    <th>
+      <%= @order.postal_code %>
+      <%= @order.street_address %>
+      <%= @order.name %>
+    </th>
   </tr>
   <tr>
     <th>支払方法</th>
