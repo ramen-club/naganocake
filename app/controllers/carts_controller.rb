@@ -11,7 +11,7 @@ class CartsController < ApplicationController
        @cart_item = CartItem.new
     end
     def create
-        if customer_signed_in?
+        if customer_signed_in
         @cart_item = CartItem.new(cart_item_params)
         @cart_item.cart_id = current_customer.cart.id
         @cart_item.save
