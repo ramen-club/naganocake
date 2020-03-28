@@ -1,5 +1,8 @@
 <h2>[ 会員の方はこちらからログイン ]</h2>
 
+<!-- ログイン時に内容ミス or 退会済み のエラーメッセージ  -->
+<%= flash[:alert] %>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label "メールアドレス" %><br />
