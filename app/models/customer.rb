@@ -12,13 +12,13 @@ class Customer < ApplicationRecord
   has_many :relations,through: :cart,source: :cart_items
   has_many :orders, dependent: :destroy
 
-  # 会員ステータスが「退会済」はログイン制限する
+  # 会員ステータスが「退会済」はログインできないように制限
   def active_for_authentication?
     super && self.is_active == "有効"
   end
-
+  # 「退会済みです」メッセージを表示させる指示
   def inactive_message
-  self.is_active == "有効" ? super : :special_condition_is_not_valid
+  self.is_active == "有効" ? super : :deleted_account
   end
 
 end
