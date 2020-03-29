@@ -5,7 +5,7 @@ class CreateOrderDetails < ActiveRecord::Migration[5.2]
       t.integer "order_id"
       t.integer "item_id"
       t.integer "count"
-      t.integer "order_amount"
+      t.integer "order_amount"  #注文確定時の税込合計金額
       t.integer "production_status", default: 0
 
       t.timestamps

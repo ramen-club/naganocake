@@ -13,7 +13,7 @@
   <div class="col-xs-6">
     <h2><%= @item.name %></h2>
     <%= @item.description %>
-    <h4><%= number_with_delimiter(@item.price) %>(税込)</h4>
+    <h4><%= number_with_delimiter(tax_included_price(@item.price)) %>(税込)</h4>
     <!-- 商品個数選択プルダウン -->
     <%= form_for @cart_item, url: cart_item_path do |f| %>
       <%= f.hidden_field :item_id, :value => @item.id %>

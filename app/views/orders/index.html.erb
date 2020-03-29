@@ -1,4 +1,4 @@
-<h2>注文情報入力</h2>
+<h2>注文情報確認</h2>
 
 <!-- カートに入れた商品一覧 -->
 <table class = "table" >
@@ -17,11 +17,11 @@
           <%= attachment_image_tag(item.item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'100x70') %>
           <%= item.item.name %>
         </td>
-        <td><%= number_with_delimiter(item.item.price) %></td>
+        <td><%= number_with_delimiter(tax_included_price(item.item.price)) %></td>
         <td><%= item.count %></td>
             <% a = 0 %>
             <% a += item.item.price * item.count %>
-            <td><%= number_with_delimiter(a) %></td><%#itemの小計%>
+            <td><%= number_with_delimiter(tax_included_price(a)) %></td><%#itemの小計%>
       </tr>
     <% end %>
   </tbody>
@@ -40,7 +40,7 @@
     </tr>
     <tr>
       <th>請求金額</th>
-      <td><strong><%= number_with_delimiter(@price += @postage) %></strong></td>
+      <td><strong><%= number_with_delimiter(@price + @postage) %></strong></td>
     </tr>
 </table>
 
@@ -53,8 +53,8 @@
 <%= @order.name %>
 
 <%= form_with(model: @order, url:orders_path, method: :post, local: true) do |order| %>
-  <%= order.hidden_field :postage, :value => @postage%>
-  <%= order.hidden_field :charge, :value => @price%>
+  <%= order.hidden_field :postage, :value => @postage %>
+  <%= order.hidden_field :charge, :value => @price %>
   <%= order.hidden_field :payment_method, :value => @order.payment_method %>
   <%= order.hidden_field :name, :value => @order.name %>
   <%= order.hidden_field :postal_code, :value => @order.postal_code %>

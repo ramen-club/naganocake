@@ -1,4 +1,4 @@
-<h3>注文詳細画面</h3>
+<h2>注文詳細画面</h2>
 
 <table>
   <tr>
@@ -56,7 +56,7 @@
 </table>
 
 <div class="total_price">
-  <p>商品合計：<%= number_with_delimiter(@total_price) %></p>
+  <p>商品合計：<%= number_with_delimiter(@order.charge) %></p>
   <p>送料：<%= number_with_delimiter(@order.postage) %></p>
-  <p>請求金額合計：<%= number_with_delimiter(@order.charge) %></p>
+  <p>請求金額合計：<%= number_with_delimiter(@order.charge + @order.postage) %></p>
 </div>
