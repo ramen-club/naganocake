@@ -98,10 +98,10 @@ span {
 	overflow: hidden;
 	cursor: pointer;
 }
-.imagWrap image {
+.imagWrap img {
 	transition-duration: 0.3s;
 }
-.imagWrap image:hover {
+.imagWrap img:hover {
 	transform: scale(1.2);
 	transition-duration: 0.3s;
 }
