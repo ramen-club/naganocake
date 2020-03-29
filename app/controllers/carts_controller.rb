@@ -11,15 +11,10 @@ class CartsController < ApplicationController
        @cart_item = CartItem.new
     end
     def create
-        if customer_signed_in
         @cart_item = CartItem.new(cart_item_params)
         @cart_item.cart_id = current_customer.cart.id
         @cart_item.save
         redirect_to carts_path
-        else
-         flash[:notice] =
-        redirect_to root_path
-        end
     end
 
 
