@@ -93,19 +93,6 @@ span {
 	padding: 10px;
 }
 
-// マウスオーバーの記述
-.imagWrap {
-	overflow: hidden;
-	cursor: pointer;
-}
-.imagWrap img {
-	transition-duration: 0.3s;
-}
-.imagWrap img:hover {
-	transform: scale(1.2);
-	transition-duration: 0.3s;
-}
-
 /*管理者側の商品一覧画面*/
 .rounded-circle {
 	float: right;
