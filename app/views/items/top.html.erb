@@ -32,7 +32,7 @@
           <%= attachment_image_tag(item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100') %>
           <% end %>
           <%= item.name %>
-          <%= number_with_delimiter(item.price) %>
+          <%= number_with_delimiter(tax_included_price(item.price)) %>
         </div>
         <% end %>
       </div>
