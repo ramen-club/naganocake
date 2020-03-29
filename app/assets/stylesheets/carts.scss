@@ -1,3 +1,78 @@
 // Place all the styles related to the Carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// ボタンCSSのベース
+.button {
+    display: inline-block;
+    width: 200px;
+    height: 80px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 70px;
+    position: relative;
+    -webkit-perspective: 150px;
+    perspective: 150px;
+    // outline: none;
+}
+.button::after {
+	position: absolute;
+	z-index: -1;
+	display: block;
+	content: '';
+}
+.button::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+// くるっと回転
+.button span {
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    border: 1px solid rgb(6, 126, 26);
+    text-align: center;
+    line-height: 50px;
+    -webkit-box-sizing: border-box;
+    -moz-transition: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all ,3s;
+    transition: all .3s;
+    pointer-events: none;
+}
+.button span:nth-child(1) {
+    background-color: rgb(6, 126, 26);
+    color: #fff;
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+    transform-origin: 50% 50% -20px;
+}
+.button span:nth-child(2) {
+    background-color: #fff;
+    color: rgb(6, 126, 26);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform:rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+    transform-origin: 50% 50% -20px;
+}
+.button:hover span:nth-child(1) {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+.button:hover span:nth-child(2) {
+    background-color: rgb(6, 126, 26);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+}
