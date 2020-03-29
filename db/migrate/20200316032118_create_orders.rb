@@ -4,8 +4,8 @@ class CreateOrders < ActiveRecord::Migration[5.2]
 
       t.integer "customer_id"
       t.integer "payment_method"
-      t.integer "postage"
-      t.integer "charge"
+      t.integer "postage"  #送料
+      t.integer "charge"  #注文確定時の商品の税込合計金額
       t.string  "name"
       t.string  "postal_code"
       t.string  "street_address"

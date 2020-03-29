@@ -16,6 +16,7 @@
     <div class="main clearfix">
       <% @items.each do |item| %>
       <% if item.genre.is_active == "有効" %>
+
       <div class = "AA">
         <div class = "imagWrap-f">
           <%= link_to item_path(item) do%>
@@ -29,6 +30,7 @@
         <%= number_with_delimiter(item.price) %>
       </p>
       </div>
+
       <% end %>
       <% end %>
     </div>
