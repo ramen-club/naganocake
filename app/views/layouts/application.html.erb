@@ -44,8 +44,9 @@
       <% if admin_signed_in? %>
         <div class="search-form" style="margin-top: 80px; text-align: right;">
           <%= form_tag(search_path, :method => 'get') do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag 'Search', :name => nil %>
+            <%= text_field_tag 'search[content]' %>
+            <%= select_tag 'search[model]', options_for_select({ "商品" => "item", "会員" => "customer" }) %>
+            <%= submit_tag '検索' %>
           <% end %>
         </div>
       <% end %>
