@@ -1,2 +1,10 @@
-<h1>検索結果</h1>
-<!-- 検索結果の表示までは実装できてないです。見かけだけ。 -->
+<% if @model == 'item' %>
+<h2>検索結果 '<%= @content %>'</h2>
+<%= render 'items/index', items: @records %>
+
+<% else @model == 'customer' %>
+<h2>検索結果 '<%= @content %>'</h2>
+<%= render 'customers/index', customers: @records %>
+
+<% end %>
+<%= paginate @records, class: "paginate" %>
