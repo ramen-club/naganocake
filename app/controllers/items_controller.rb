@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
       @items = Item.order(created_at: :desc).page(params[:page]).per(PER)
       @info = "商品"
     end
-    @counts = @items.count
+    @counts = @items.total_count
   end
   def show
     @genres = Genre.where(is_active: 1)

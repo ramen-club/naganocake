@@ -1,12 +1,11 @@
-<h3>ジャンル編集画面</h3>
+<h2>ジャンル編集画面</h2>
 <br>
-<%# form_with ヘルパーを使いたかっただけです。 %>
 <%= form_with(model: @genre, url: admin_genre_path(@genre.id)) do |f| %>
-  <%= "ジャンル" %>
-  <%= f.text_field :name %>
-   <%= f.radio_button :is_active, :有効 %>
-   <%= f.label :is_active, "有効", {value: :有効} %>
-   <%= f.radio_button :is_active, :無効 %>
-   <%= f.label :is_active, "無効", {value: :無効} %>
-   <%= f.submit "変更を編集する"%>
+	<%= "ジャンル" %>
+	<%= f.text_field :name %>
+	<%= f.radio_button :is_active, :有効 %>
+	<%= f.label :is_active, "有効", {value: :有効} %>
+	<%= f.radio_button :is_active, :無効 %>
+	<%= f.label :is_active, "無効", {value: :無効} %>
+	<%= f.submit "変更を編集する"%>
 <% end %>

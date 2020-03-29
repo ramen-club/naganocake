@@ -1,8 +1,5 @@
-    <% if flash[:error] %>
-    <script>
-      alert('ログインして！！！！');
-    </script>
-    <% end %>
+
+
 <div class="container">
   <div class="row">
 
@@ -10,6 +7,7 @@
       <!-- ジャンル検索サイドバー -->
       <%= render 'genre_search', genres: @genres %>
     </div>
+
 
     <div class="col-xs-9">
       <!-- トップビジュアル -->
@@ -39,6 +37,7 @@
         <% end %>
       </div>
     </div>
+
 
   </div>
 </div>

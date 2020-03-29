@@ -13,23 +13,8 @@
     <!-- 商品一覧を表示 -->
     <h2><%= @info %>一覧(全<%= @counts %>件)</h2><br>
 
-    <div class="main clearfix">
-      <% @items.each do |item| %>
-      <% if item.genre.is_active == "有効" %>
-      <div class = "AA">
-        <p>
-        <%= attachment_image_tag item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100' %>
-      </p>
-      <p>
-        <%= link_to item.name, item_path(item) %>
-      </p>
-      <p>
-        <%= number_with_delimiter(item.price) %>
-      </p>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
+    <%= render 'items/index', items: @items %>
+
     <%= paginate @items, class: "paginate" %>
   </div>
 
