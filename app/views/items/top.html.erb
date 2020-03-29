@@ -34,7 +34,7 @@
             <% end %>
           </span>
           <%= item.name %>
-          <%= number_with_delimiter(item.price) %>
+          <%= number_with_delimiter(tax_included_price(item.price)) %>
         </div>
         <% end %>
       </div>
