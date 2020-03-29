@@ -17,9 +17,11 @@
       <% @items.each do |item| %>
       <% if item.genre.is_active == "有効" %>
       <div class = "AA">
-        <p>
-        <%= attachment_image_tag item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100' %>
-      </p>
+        <div class = "imagWrap">
+          <%= link_to item_path(item) do%>
+            <%= attachment_image_tag item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100' %>
+          <% end %>
+        </div>
       <p>
         <%= link_to item.name, item_path(item) %>
       </p>
