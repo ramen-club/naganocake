@@ -10,13 +10,13 @@ class OrdersController < ApplicationController
   end
 
   def index
-    # @items = current_customer.cart.cart_item
     customer = current_customer
     @cart_items = Cart.order(created_at: :asc).find_by(customer_id: customer.id).cart_items
-    @price = CartItem.subtotal(@cart_items)
+    # 1.1は消費税10%を表しています
+    @price = (CartItem.subtotal(@cart_items) * 1.1).round
+    # 送料は800円で固定
     @postage = 800
     @order = Order.new(order_params)
-    # order.payment_method = Order.find(params[:payment_method])
     if params[:deliver_address] == "1"
       @order.name = current_customer.family_name + current_customer.first_name
       @order.postal_code = current_customer.postal_code
@@ -30,7 +30,6 @@ class OrdersController < ApplicationController
       @deliver = Deliver.new(address_params)
       @deliver.customer_id = current_customer.id
       @deliver.save
-
       # 登録された住所を、オーダーモデルのカラムに格納する
       @order.name = @deliver.name
       @order.postal_code = @deliver.postal_code
@@ -45,14 +44,16 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(customer_params)
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    # @cart_item = current_customer.cart.cart_items
+    # @order.charge = @price
     if @order.save
        @cart_items = current_customer.cart.cart_items
        @cart_items.each do |cart_item|
         order_detail = OrderDetail.new
         order_detail.count = cart_item.count
-        order_detail.order_amount = cart_item.item.price * cart_item.count
+        order_detail.order_amount = (cart_item.item.price * 1.1) * cart_item.count
         order_detail.order_id = @order.id
         order_detail.item_id = cart_item.item_id
         order_detail.save
@@ -72,16 +73,16 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.require(:order).permit(:name, :customer_id, :payment_method, :postal_code, :street_address)
+      params.require(:order).permit(:customer_id, :payment_method, :postage, :charge, :name, :postal_code, :street_address)
     end
 
     def address_params
       params.require(:deliver).permit(:name, :postal_code, :street_address )
     end
 
-    def customer_params
-      params.require(:order).permit(:customer_id, :payment_method, :postage, :charge, :name, :postal_code, :street_address )
-    end
+    # def customer_params
+    #   params.require(:order).permit(:customer_id, :payment_method, :postage, :charge, :name, :postal_code, :street_address )
+    # end
 
     def detail_params
       params.require(:order_detail).permit(:order_id, :item_id, :count, :order_amount, :production_status)
