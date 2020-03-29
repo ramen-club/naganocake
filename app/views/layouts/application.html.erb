@@ -20,22 +20,22 @@
           <!-- 顧客ログイン時 -->
           <% if customer_signed_in? %>
             <span>ようこそ  <%= current_customer.family_name %> <%= current_customer.first_name %> さん！</span>
-            <%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-default test' %>
-            <%= link_to '商品一覧', items_path, class: 'btn btn-default test' %>
-            <%= link_to 'カート', carts_path, class: 'btn btn-default test' %>
-            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'btn btn-default test' %>
+            <%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to '商品一覧', items_path, class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to 'カート', carts_path, class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'btn btn-default paper paper-curl-right' %>
           <!-- 管理者ログイン時 -->
           <% elsif admin_signed_in? %>
-            <%= link_to '商品一覧', admin_items_path, class: 'btn btn-default test' %>
-            <%= link_to '会員一覧', admin_customers_path, class: 'btn btn-default test' %>
-            <%= link_to '注文履歴一覧', admin_orders_path, class: 'btn btn-default test' %>
-            <%= link_to 'ジャンル管理', admin_genres_path, class: 'btn btn-default test' %>
-            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-default test' %><br>
+            <%= link_to '商品一覧', admin_items_path, class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to '会員一覧', admin_customers_path, class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to '注文履歴一覧', admin_orders_path, class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to 'ジャンル管理', admin_genres_path, class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-default test paper paper-curl-right' %><br>
           <!-- ログアウト時 -->
           <% else %>
-            <%= link_to '商品一覧', items_path, class: 'btn btn-default test' %>
-            <%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-default test' %>
-            <%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-default test' %>
+            <%= link_to '商品一覧', items_path, class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-default paper paper-curl-right' %>
+            <%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-default paper paper-curl-right' %>
             <%= link_to '管理者はこちら', new_admin_session_path %>
           <% end %>
         </ul>
