@@ -7,6 +7,29 @@
 	margin-right: 5%;
 }
 
+// 大きくなるマウスオーバーの記述
+.imagWrap {
+	overflow: hidden;
+	cursor: pointer;
+}
+.imagWrap img {
+	transition-duration: 0.3s;
+}
+.imagWrap img:hover {
+	transform: scale(2.0);
+	transition-duration: 0.3s;
+}
+
+// 浮き出るマウスオーバー
+.imagWrap-f {
+	margin: 20px auto 0;
+	transition-duration: 0.5s;
+}
+.imagWrap-f:hover {
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+	transform: translateY(-10px);
+	transition-duration: 0.5s;
+
 .clearfix::after {
 	content: "";
 	display: block;
