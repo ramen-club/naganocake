@@ -7,55 +7,45 @@
       <!-- ジャンル検索サイドバー -->
       <%= render 'genre_search', genres: @genres %>
     </div>
-    <div class="col-xs-2">
+    <div class="col-xs-1">
     </div>
 
     <div class="col-xs-6">
       <!-- トップビジュアル -->
-      <div class="main-visual-text">
-        <div class="theTarget">
-          <div>ようこそ、NaganoCakeへ！<br>
-            このサイトは、ケーキ販売のECサイトになります。<br>
-            会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。</div>
-          <div></div>
-          <div></div>
-          <div></div>
+        <div class="main-visual-text">
+          <div class="theTarget">
+            <div>ようこそ、NaganoCakeへ！<br>
+              このサイトは、ケーキ販売のECサイトになります。<br>
+              会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。</div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
       </div>
 
-      <div class="col-xs-1">
+      <div class="col-xs-2">
       </div>
+    </div>
       <div class="row">
-        <div class="col-xs-3">
-      <!-- 商品ID上から4件をオススメとして表示 -->
-      <h3>オススメ商品</h3>
-      <div class="item-picup">
-        <% @items.each do |item| %>
-        <div class = "AA">
-          <span class = "imagWrap">
-            <%= link_to(item) do %>
-              <%= attachment_image_tag(item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100') %>
-            <% end %>
-          </span>
-          <%= item.name %>
-          <%= number_with_delimiter(tax_included_price(item.price)) %>
-        </div>
-        <div class="col-xs-9">
-          <!-- 商品ID上から4件をオススメとして表示 -->
-          <h3>オススメ商品</h3>
-          <div class="item-picup">
-            <% @items.each do |item| %>
-            <div class = "AA">
-              <%= link_to(item) do %>
-              <%= attachment_image_tag(item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100') %>
-              <% end %>
-              <%= item.name %>
-              <%= number_with_delimiter(item.price) %>
+            <div class="col-xs-4">
             </div>
-            <% end %>
-          </div>
-        </div>
+              <div class="col-xs-8">
+                <!-- 商品ID上から4件をオススメとして表示 -->
+                <h3>オススメ商品</h3>
+                <div class="item-picup">
+                  <% @items.each do |item| %>
+                  <div class = "AA">
+                    <%= link_to(item) do %>
+                    <%= attachment_image_tag(item, :image, :fill, 60, 60, fallback: "no_image.jpg", size:'150x100') %>
+                    <% end %>
+                    <%= item.name %>
+                    <%= number_with_delimiter(item.price) %>
+                  </div>
+                  <% end %>
+                </div>
+            </div>
 
       </div>
     </div>
