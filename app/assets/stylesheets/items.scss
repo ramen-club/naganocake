@@ -31,6 +31,21 @@
 	transition-duration: 0.5s;
 }
 
+// グレースケールからカラーに変換、角が出現
+.img_wrap {
+	overflow: fidden;
+}
+.img_wrap img {
+	filter: grayscale(90%);
+	border-radius: 50%;
+	transition-duration: 0.5s;
+}
+.img_wrap img:hover {
+	filter: grayscale(0);
+	border-radius: 0%;
+	transition-duration: 0.3s;
+}
+
 
 .clearfix::after {
 	content: "";
